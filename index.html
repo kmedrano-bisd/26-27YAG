@@ -1,29 +1,432 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6th Grade Math Pacing Calendar</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & ReactDOM CDNs -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <!-- Babel for inline JSX compilation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>6th & 7th Honors Math Pacing Dashboard</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        /* --- 90s RETRO PASTEL POP THEME --- */
+        :root {
+            --bg-color: #fcf6bd;     /* Pale Pastel Yellow */
+            --card-bg: #ffffff;
+            --primary-pop: #ff99c8;  /* Bubblegum Pink */
+            --secondary-pop: #fec5bb;/* Pastel Coral */
+            --accent-blue: #a9def9;   /* Sky Blue */
+            --accent-purple: #e4c1f9; /* Lavender */
+            --mint-green: #d0f4de;    /* Mint Green */
+            --text-dark: #2b2d42;     /* Deep Navy */
+            --border-thick: 3px solid #2b2d42;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Trebuchet MS', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: var(--primary-pop);
+            padding: 20px;
+            border-radius: 20px;
+            border: var(--border-thick);
+            box-shadow: 6px 6px 0px #2b2d42;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0px var(--accent-blue);
+        }
+
+        /* --- DASHBOARD NAVIGATION TABS --- */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background-color: var(--accent-purple);
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #2b2d42;
+            transition: all 0.1s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #2b2d42;
+            background-color: var(--primary-pop);
+        }
+
+        .dashboard-view {
+            display: none;
+        }
+
+        .dashboard-view.active {
+            display: grid;
+        }
+
+        /* --- VIEW 1: MONTHLY INTERACTIVE CALENDAR --- */
+        .calendar-layout {
+            grid-template-columns: 250px 1fr 300px;
+            gap: 20px;
+        }
+
+        .month-selector {
+            background: var(--accent-blue);
+            padding: 20px;
+            border-radius: 15px;
+            border: var(--border-thick);
+            box-shadow: 5px 5px 0px #2b2d42;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .month-btn {
+            background: var(--card-bg);
+            border: 2px solid #2b2d42;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .month-btn:hover, .month-btn.active {
+            background: var(--accent-purple);
+            color: var(--text-dark);
+        }
+
+        .calendar-grid-box {
+            background: var(--card-bg);
+            border: var(--border-thick);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 6px 6px 0px #2b2d42;
+        }
+
+        .grid-header {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            text-align: center;
+            font-weight: bold;
+            background: var(--secondary-pop);
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #2b2d42;
+            margin-bottom: 10px;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .day-card {
+            background: #fff;
+            border: 2px solid #2b2d42;
+            border-radius: 10px;
+            min-height: 80px;
+            padding: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .day-card:hover {
+            background: var(--mint-green);
+        }
+
+        .day-num {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2b2d42;
+        }
+
+        .day-preview {
+            font-size: 0.75rem;
+            margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #666;
+        }
+
+        .details-sidebar {
+            background: var(--accent-purple);
+            padding: 20px;
+            border-radius: 15px;
+            border: var(--border-thick);
+            box-shadow: 5px 5px 0px #2b2d42;
+        }
+
+        .detail-pane {
+            background: white;
+            border: 2px solid #2b2d42;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .badge-on { background: var(--mint-green); padding: 2px 6px; border-radius: 4px; border: 1px solid #2b2d42; font-size: 0.8rem; font-weight: bold;}
+        .badge-honors { background: var(--primary-pop); padding: 2px 6px; border-radius: 4px; border: 1px solid #2b2d42; font-size: 0.8rem; font-weight: bold;}
+
+        /* --- VIEW 2: VARIATIONS & NOTES LAYOUT --- */
+        .variations-layout {
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .table-card {
+            background: white;
+            border: var(--border-thick);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 6px 6px 0px #2b2d42;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: var(--accent-blue);
+            padding: 12px;
+            border: 2px solid #2b2d42;
+        }
+
+        td {
+            padding: 12px;
+            border: 2px solid #2b2d42;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .notes-side-panel {
+            background: var(--secondary-pop);
+            border: var(--border-thick);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 6px 6px 0px #2b2d42;
+            height: fit-content;
+        }
+
+        .sticky-note {
+            background: #fff;
+            border: 2px solid #2b2d42;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 3px 3px 0px #2b2d42;
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100">
-    <div id="root"></div>
+<body>
 
-    <script type="text/babel">
-        // Paste the exact JSX code from the App.jsx file here!
-        // (Remember to replace the lucide imports with standard 'lucide.lucideIconName' or map the icons from the global window object)
+    <header>
+        <h1>✿ Math Planning Central ✿</h1>
+        <p>6th Grade Base & 7th Accelerated Honors Interactive YAG</p>
+    </header>
+
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('calendar-view')">📅 Interactive Calendar</button>
+        <button class="tab-btn" onclick="switchTab('variations-view')">📝 Variations & Side Notes</button>
+    </div>
+
+    <div id="calendar-view" class="dashboard-view active calendar-layout">
+        
+        <div class="month-selector">
+            <h3>Select Month</h3>
+            <button class="month-btn active" onclick="loadMonth('september')">September 2026</button>
+            <button class="month-btn" onclick="loadMonth('october')">October 2026</button>
+            <button class="month-btn" onclick="loadMonth('january')">January 2027</button>
+            <button class="month-btn" onclick="loadMonth('february')">February 2027</button>
+            <button class="month-btn" onclick="loadMonth('march')">March 2027</button>
+        </div>
+
+        <div class="calendar-grid-box">
+            <h2 id="current-month-title" style="margin-top:0; text-align: center; text-transform: uppercase;">September 2026</h2>
+            <div class="grid-header">
+                <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div>
+            </div>
+            <div class="days-grid" id="days-grid-container">
+                </div>
+        </div>
+
+        <div class="details-sidebar">
+            <h3 style="margin-top:0;">✨ Day Inspector</h3>
+            <p>Click any active calendar box to unpack the lesson blueprints.</p>
+            <div id="inspector-content">
+                <div class="detail-pane">
+                    <h4>Select a date to view tracking details.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="variations-view" class="dashboard-view variations-layout">
+        
+        <div class="table-card">
+            <h2 style="margin-top:0; color: #2b2d42;">Core Concept Alignment Tracker</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Key Target Concept</th>
+                        <th>6th Grade On-Level Scope</th>
+                        <th>7th Grade Honors Path Extension</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Distributive Property</strong></td>
+                        <td>Numeric factoring & arrays (Sept)</td>
+                        <td>Factoring variable algebraic structures (Honors baseline)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Composite Area</strong></td>
+                        <td>Decomposing basic polygons into rectangles/triangles (Oct)</td>
+                        <td>Complex compound shapes using geometric curves & semicircles (Jan)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integers</strong></td>
+                        <td>Absolute values & basic layout models</td>
+                        <td>Four-quadrant operations, algorithmic products & quotients (Feb)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiple Representations</strong></td>
+                        <td>Graphing basic tables & verbal setups</td>
+                        <td>Translating quantitative systems (Rule $\leftrightarrow$ Table $\leftrightarrow$ Graph $\leftrightarrow$ Equation) (March)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="notes-side-panel">
+            <h3 style="margin-top:0;">✍️ Strategy Notes</h3>
+            <div class="sticky-note" style="background: var(--accent-blue);">
+                <strong>💡 Acceleration Goal:</strong><br>
+                Because all 6th-grade cohorts are tracking directly into 7th Honors, base 6th concepts are condensed to carve out room for 7th-grade geometry modules in January.
+            </div>
+            <div class="sticky-note" style="background: var(--mint-green);">
+                <strong>⚠️ CBA Windows:</strong><br>
+                Make sure math station days using MATHia align cleanly with the CBA target dates found at the close of major instructional tracks.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA BACKBONE FOR INTERACTIVE DAY CLICKER ---
+        const calendarData = {
+            september: [
+                { day: "21", preview: "MATHia Day", onLevel: "Station Day: Exploring the distributive property with numeric expressions.", honors: "Same tracking framework, baseline diagnostic setup." },
+                { day: "22", preview: "Mastery Lesson", onLevel: "Prime Factorization focus.", honors: "Factoring out numerical GCF from expressions." }
+            ],
+            october: [
+                { day: "13", preview: "Decomposing Irregular Shapes", onLevel: "Module 1 Topic 4 Lesson 3: Decomposing irregular polygons into rectangles/triangles.", honors: "Advanced polygonal parsing." },
+                { day: "19", preview: "Composite Area Pt 1", onLevel: "Module 1 Topic 4 Lesson 4: Activities 1 & 2.", honors: "Tracking multi-layered application problems." },
+                { day: "20", preview: "Composite Area Pt 2", onLevel: "Lesson 4: Activities 3 & 4.", honors: "Formula mastery and composite calculations." },
+                { day: "21", preview: "Composite Area Finish", onLevel: "Lesson 4: Activities 5 & 6 (Prep for CBA #2).", honors: "Complex figures with decimal values." }
+            ],
+            january: [
+                { day: "5", preview: "7th Honors Geometry Launch", onLevel: "Reviewing base geometric formulas.", honors: "Module 5 Topic 1 Lesson 3: Advanced Composite Area (Semicircles & curves)." },
+                { day: "6", preview: "Composite Curves", onLevel: "Base Area exercises.", honors: "TEKS 7.9C: Computing perimeter/area of combined rounded frames." },
+                { day: "11", preview: "Geometry MATHia", onLevel: "Targeted Skills Practice.", honors: "Software tracks explicitly locked to 7th compound geometric systems." }
+            ],
+            february: [
+                { day: "6", preview: "Integer Launch", onLevel: "Module 3 Topic 2: Absolute value representations.", honors: "Intro to full four-quadrant operations." },
+                { day: "25", preview: "Algorithms & Rules", onLevel: "Algorithmic products and quotients.", honors: "Advanced algebraic variable substitution with integers." },
+                { day: "26", preview: "CBA #5 Test", onLevel: "CBA #5 Assessment Window (Operating with Integers).", honors: "CBA #5 Full Mastery Evaluation." }
+            ],
+            march: [
+                { day: "02", preview: "Intro to 6.6A/B/C", onLevel: "Module 4 Topic 3 Lesson 1 & 2: Modeling scenarios with equations.", honors: "Identifying independent vs dependent variables quickly." },
+                { day: "12", preview: "Graphing Relationships", onLevel: "Lessons 3 & 4: Connecting verbal text to functional data tables.", honors: "Developing functional rules $y = kx$ and $y = x + b$ models." },
+                { day: "15", preview: "CBA #7 Review", onLevel: "Graphing Quantitative Relationships wrap-up.", honors: "Comprehensive blueprint tracking review." }
+            ]
+        };
+
+        // --- TAB NAVIGATION FUNCTION ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.dashboard-view').forEach(view => view.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- CALENDAR GRID POPULATOR ---
+        function loadMonth(monthKey) {
+            // Update Active Buttons
+            document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update Heading
+            document.getElementById('current-month-title').innerText = monthKey + " Pacing Schedule";
+
+            const gridContainer = document.getElementById('days-grid-container');
+            gridContainer.innerHTML = ''; // Clear prior view
+
+            const monthDays = calendarData[monthKey];
+
+            // Build out elements
+            monthDays.forEach((data, index) => {
+                const card = document.createElement('div');
+                card.className = 'day-card';
+                card.onclick = () => showDetails(data);
+                card.innerHTML = `
+                    <div class="day-num">${data.day}</div>
+                    <div class="day-preview">${data.preview}</div>
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            // Automatically open details for first lesson day
+            if(monthDays.length > 0) {
+                showDetails(monthDays[0]);
+            }
+        }
+
+        // --- DAY INSPECTOR PANEL POPULATOR ---
+        function showDetails(dayData) {
+            const sidebar = document.getElementById('inspector-content');
+            sidebar.innerHTML = `
+                <div class="detail-pane" style="border-left: 5px solid var(--mint-green)">
+                    <h3 style="margin:0 0 10px 0; color:var(--text-dark)">📅 Date Selected: Day ${dayData.day}</h3>
+                    <p><strong>Focus:</strong> ${dayData.preview}</p>
+                </div>
+                <div class="detail-pane" style="border-left: 5px solid var(--accent-blue)">
+                    <p><span class="badge-on">On-Level Track</span></p>
+                    <p>${dayData.onLevel}</p>
+                </div>
+                <div class="detail-pane" style="border-left: 5px solid var(--primary-pop)">
+                    <p><span class="badge-honors">Honors Extension</span></p>
+                    <p>${dayData.honors}</p>
+                </div>
+            `;
+        }
+
+        // Initialize First Render
+        window.onload = function() {
+            // Trick code to execute the first initial array build
+            const initialClick = { target: document.querySelector('.month-btn') };
+            loadMonth('september');
+        };
     </script>
 </body>
 </html>
