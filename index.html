@@ -152,7 +152,7 @@
         }
 
         .day-card:not(.empty):not(.blank-placeholder):hover {
-            transform: translate(-1px, -1px);
+            transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #2b2d42;
             background: var(--mint-green);
         }
@@ -173,6 +173,8 @@
 
         .day-card.active-selected {
             background: var(--accent-blue) !important;
+            border-color: var(--text-dark);
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
         }
 
         .day-card.holiday {
@@ -186,7 +188,7 @@
 
         .day-num {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
 
         .day-label {
@@ -207,6 +209,12 @@
             margin: 5px 0 15px 0;
             box-shadow: 4px 4px 0px var(--text-dark);
             display: none;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .drawer-grid {
@@ -229,7 +237,7 @@
         .panel-title {
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-bottom: 2px solid var(--text-dark);
             padding-bottom: 4px;
             margin-bottom: 8px;
@@ -278,7 +286,7 @@
         tr:nth-child(even) {
             background-color: #fdfbf7;
         }
-
+        
         .date-badge {
             background-color: var(--accent-purple);
             padding: 4px 8px;
@@ -295,7 +303,7 @@
 
     <header>
         <h1>✿ Math Instructional Command Center ✿</h1>
-        <p>BISD 2026-2027 • 6th Grade Base vs 6th Honors Alignment</p>
+        <p>BISD 26-27 YAG Mon-Fri Calendar Sync • On-Level vs. Honors Extensions</p>
     </header>
 
     <div class="tab-container">
@@ -317,7 +325,7 @@
 
     <div id="macro-view" class="dashboard-view macro-layout">
         <div class="macro-card">
-            <h2 style="margin-top:0;">Track Divergence & Strategic Notes</h2>
+            <h2 style="margin-top:0;">Curriculum Strategy & Context Notes</h2>
             <p>Side-by-side comparison of where the 6th Honors curriculum diverges to prepare students for accelerated pathways.</p>
             <table>
                 <thead>
@@ -352,13 +360,6 @@
                         <td>Ensure Honors connects graphing solutions smoothly back to inequality constraints.</td>
                     </tr>
                     <tr>
-                        <td><strong>Area & Geometry Structures</strong></td>
-                        <td><span class="date-badge">Jan & Bridge</span></td>
-                        <td>Decomposes base polygons (triangles, rectangles, trapezoids).</td>
-                        <td>Pulls in 7th grade circle area ($A = \pi r^2$) and circumference tracking.</td>
-                        <td>On-Level works with straight lines; Honors handles curves, pi, and radius metrics.</td>
-                    </tr>
-                    <tr>
                         <td><strong>Linear Relationships & Functions</strong></td>
                         <td><span class="date-badge">February</span></td>
                         <td>Identifies input/output rows and additive vs multiplicative scales.</td>
@@ -367,10 +368,10 @@
                     </tr>
                     <tr>
                         <td><strong>Bridge to 7th Honors</strong></td>
-                        <td><span class="date-badge">Late April / May</span></td>
-                        <td>Since ALL 6th enters 7th Honors, pacing unifies into 7th standards.</td>
+                        <td><span class="date-badge">Mid-April / May</span></td>
+                        <td>"Since ALL 6th enters 7th Honors..." pacing unifies into 7th TEKS.</td>
                         <td>Full 7th grade TEKS alignment for geometry and proportional limits.</td>
-                        <td>Unify the pacing here. Everyone needs to master circle equations and advanced geometry.</td>
+                        <td>Unify the pacing here. Everyone needs to master circle equations ($A = \pi r^2$).</td>
                     </tr>
                 </tbody>
             </table>
@@ -378,187 +379,187 @@
     </div>
 
     <script>
-        // --- EXACT YAG TIMELINE MATRIX WITH HONORS RESTORED ---
-        // monthIndex follows JavaScript Date logic (January = 0, August = 7)
+        // --- EXACT YAG TIMELINE MATRIX (Aligned to 26-27 Calendar) ---
+        // monthIndex follows JavaScript Date logic: January = 0, August = 7
         const masterTimeline = {
             august: { year: 2026, monthIndex: 7, content: {
-                10: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
-                11: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
-                12: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
-                13: { label: "First Day / Intro", focus: "Policies and Procedures", onLevel: "First day of classes! Review workspace layouts and course norms.", honors: "Establish accelerated track norms, digital workflows, and rigor expectations." },
-                14: { label: "Station Day", focus: "MATHia Review", onLevel: "Station Day / MATHia Optional for Review", honors: "Initial diagnostic tracking and system login verification." },
-                17: { label: "Mod 1 Top 1 L1", focus: "Factors and Multiples", onLevel: "SE:6.7D Module 1 Topic 1 Lesson 1 - 'Getting Started. Activity 1'", honors: "Apply prime factors directly to algebraic variable chains." },
-                18: { label: "Mod 1 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.7A Module 1 Topic 1 Lesson 2 - Warm up, 'Activity 1 and 2'", honors: "Factor terms out of algebraic expressions with common bases." },
-                19: { label: "Mod 1 Top 1 L2", focus: "GCF and Sums", onLevel: "SE:6.7A, 6.7D Module 1 Topic 1 Lesson 2 - 'Activity 3 and 4'", honors: "Rewrite algebraic strings utilizing advanced distribution properties." },
-                20: { label: "MATHia Day", focus: "Distributive Property", onLevel: "Mathia CB: Exploring the Distributive Property with Numeric Expressions", honors: "Complete algorithmic distribution challenges in personalized profiles." },
-                21: { label: "Station Day", focus: "Mathia Set Up", onLevel: "Station Day / Mathia Getting Started (students)", honors: "Review numeric expression balance and property charts." },
-                24: { label: "Mod 1 Top 2 L1", focus: "Benchmark Fractions", onLevel: "SE:6.4F, 6.5C Module 1 Topic 2 Lesson 1 - Activity 1 Benchmark Fractions", honors: "Convert variable fraction baselines to dynamic percentage bounds." },
-                25: { label: "Mod 1 Top 2 L2", focus: "Lesson 2 Intro", onLevel: "SE:6.2D, 6.4F Module 1 Topic 2 Lesson 2 - 'Getting Started, Activity 1, Activity 2'", honors: "Map out scaling equations directly from complex text records." },
-                26: { label: "Mod 1 Top 2 L3", focus: "Lesson 3 Start", onLevel: "SE:6.3B, 6.3E Module 1 Topic 2 Lesson 3 - Getting Started, 'Activity 1'", honors: "Formulate fractional transformations analytically across variables." },
-                27: { label: "Mod 1 Top 2 L3", focus: "Talk the Talk", onLevel: "SE:6.3B, 6.3E Module 1 Topic 2 Lesson 3 - 'Activity 2. Talk the Talk'", honors: "Isolate balance anomalies inside complex fractional terms." },
-                28: { label: "Station Day", focus: "MATHia Fraction Multiplying", onLevel: "Station Day / MATHia Day CB: Multiplying by Fractions", honors: "Complete custom math modules targeting rate conversions." },
-                31: { label: "Mod 1 Top 2 L4", focus: "Fraction Division", onLevel: "SE:6.2E, 6.3A, 6.3E Module 1 Topic 2 Lesson 4 - 'Getting Started, Activity 1, Activity 2'", honors: "Establish strict boundaries for reciprocal division steps." }
+                10: { label: "Prof Dev", isHoliday: true, focus: "Teacher In-Service" },
+                11: { label: "Prof Dev", isHoliday: true, focus: "Teacher In-Service" },
+                12: { label: "Prof Dev", isHoliday: true, focus: "Teacher In-Service" },
+                13: { label: "First Day of Classes", focus: "Policies and Procedures", onLevel: "First day! Set up classroom expectations.", honors: "Establish accelerated track norms and digital workflows." },
+                14: { label: "Policies & Proc", focus: "Policies and Procedures", onLevel: "Review workspace layouts and course norms.", honors: "Initialize high-level technical expectations." },
+                17: { label: "Mod 1 Top 1 L1", focus: "Factors and Multiples", onLevel: "SE:6.7D Mod 1 Top 1 L1 - 'Getting Started. Activity 1' (SP p1)", honors: "Apply prime factors directly to algebraic chains." },
+                18: { label: "Mod 1 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.7A Mod 1 Top 1 L2 - Warm up, 'Activity 1 and 2'", honors: "Factor terms out of expressions with common bases." },
+                19: { label: "Mod 1 Top 1 L2", focus: "GCF and Sums", onLevel: "SE:6.7A, 6.7D Mod 1 Top 1 L2 - 'Activity 3 and 4'", honors: "Rewrite algebraic strings utilizing distribution properties." },
+                20: { label: "MATHia Day", focus: "Distributive Property", onLevel: "Mathia CB: Using the Distributive Property with Numeric Expressions", honors: "Complete algorithmic distribution challenges in profiles." },
+                21: { label: "Station Day", focus: "Mathia Set Up", onLevel: "Station Day / Mathia Getting Started (students)", honors: "Initial diagnostic tracking and system login verification." },
+                24: { label: "Mod 1 Top 2 L1", focus: "Benchmark Fractions", onLevel: "SE:6.4F, 6.5C Mod 1 Top 2 L1 - Act 1 Benchmark Fractions", honors: "Convert variable fraction baselines to percentage bounds." },
+                25: { label: "Mod 1 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2D, 6.4F Mod 1 Top 2 L2 - 'Getting Started, Activity 1, Activity 2'", honors: "Map out scaling equations directly from complex text records." },
+                26: { label: "Mod 1 Top 2 L3", focus: "Activity 1", onLevel: "SE:6.3B, 6.3E Mod 1 Top 2 L3 - Getting Started, 'Activity 1'", honors: "Formulate fractional transformations analytically." },
+                27: { label: "Mod 1 Top 2 L3", focus: "Talk the Talk", onLevel: "SE:6.3B, 6.3E Mod 1 Top 2 L3 - 'Activity 2. Talk the Talk'", honors: "Isolate balance anomalies inside complex fractional terms." },
+                28: { label: "Station Day", focus: "MATHia Fraction Multiplying", onLevel: "Station Day / MATHia Day CB: Multiplying by Fractions to Increase/Decrease", honors: "Complete custom math modules targeting rate conversions." },
+                31: { label: "Mod 1 Top 2 L4", focus: "Fraction Division", onLevel: "SE:6.2E, 6.3A, 6.3E Mod 1 Top 2 L4 - 'Getting Started, Act 1, Act 2'", honors: "Establish strict boundaries for reciprocal division steps." }
             }},
             september: { year: 2026, monthIndex: 8, content: {
-                1: { label: "Mod 1 Top 2 L4", focus: "Fraction Division Algorithms", onLevel: "SE:6.2E, 6.3A, 6.3E Module 1 Topic 2 Lesson 4 - 'Activity 3'", honors: "Solve compound division chains containing tracking parameters." },
+                1: { label: "Mod 1 Top 2 L4", focus: "Fraction Division Algorithms", onLevel: "SE:6.2E, 6.3A, 6.3E Mod 1 Top 2 L4 - 'Activity 3' (Mathia CB)", honors: "Solve compound division chains containing tracking parameters." },
                 2: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)", honors: "Execute diagnostics tracking math reasoning indicators." },
                 3: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)", honors: "Complete diagnostics testing high-level analytical markers." },
                 4: { label: "Station Day", focus: "MATHia Division", onLevel: "Station Day / MATHia: Fraction by Fraction Division", honors: "Verify polynomial factorization paths in software profiles." },
-                7: { label: "Holiday", isHoliday: true, focus: "Labor Day Holiday" },
+                7: { label: "Holiday", isHoliday: true, focus: "Labor Day" },
                 8: { label: "Station Day", focus: "Review", onLevel: "Station Day", honors: "Engage in peer validation loops mapping advanced parameters." },
-                9: { label: "CBA #1", isCba: true, focus: "Module 1 Topic 1&2", onLevel: "CBA #1: Factor & Multiples & Positive Rational Numbers", honors: "Execute honors version evaluating advanced structural reasoning." },
-                10: { label: "Mod 1 Top 3 L2", focus: "Triangle Properties", onLevel: "SE: 6.8A Module 1 Topic 3 Lesson 2 - Getting Started, Act 1", honors: "Calculate interior angle missing vectors using algebraic variables." },
-                11: { label: "Mod 1 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE: 6.8B, 6.8C, 6.8D Module 1 Topic 3 Lesson 3 - Activity 1 and 2", honors: "Formulate geometric decomposition metrics for complex layouts." },
+                9: { label: "CBA #1", isCba: true, focus: "Mod 1 Top 1&2", onLevel: "CBA #1: Factor & Multiples & Positive Rational Numbers", honors: "Execute honors version evaluating advanced structural reasoning." },
+                10: { label: "Mod 1 Top 3 L2", focus: "Triangle Properties", onLevel: "SE: 6.8A Mod 1 Top 3 L2 - Getting Started, Act 1", honors: "Calculate interior angle missing vectors using algebraic variables." },
+                11: { label: "Mod 1 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE: 6.8B, 6.8C, 6.8D Mod 1 Top 3 L3 - Activity 1 and 2", honors: "Formulate geometric decomposition metrics for complex layouts." },
                 14: { label: "Station Day", focus: "Review", onLevel: "Station Day", honors: "Resolve advanced non-standard coordinate geometry arrays." },
-                15: { label: "Mod 1 Top 3 L3", focus: "Talk the Talk", onLevel: "SE: 6.8B, 6.8D Module 1 Topic 3 Lesson 3 - Activity 2 The talk", honors: "Derive bounding equations across multidimensional variables." },
-                16: { label: "Mod 1 Top 3 L4", focus: "Activity 1 and 3", onLevel: "SE: 6.8C, 6.8D Module 1 Topic 3 Lesson 4 - Activity 1 and 3", honors: "Decompose custom industrial curves utilizing tracking functions." },
+                15: { label: "Mod 1 Top 3 L3", focus: "Talk the Talk", onLevel: "SE: 6.8B, 6.8D Mod 1 Top 3 L3 - Activity 2 The talk", honors: "Derive bounding equations across multidimensional variables." },
+                16: { label: "Mod 1 Top 3 L4", focus: "Activity 1 and 3", onLevel: "SE: 6.8C, 6.8D Mod 1 Top 3 L4 - Activity 1 and 3", honors: "Decompose custom industrial curves utilizing tracking functions." },
                 17: { label: "Station Day", focus: "Review", onLevel: "Station Day", honors: "Formulate area proofs utilizing multi-variable parameters." },
-                18: { label: "Mod 1 Top 4 L1", focus: "Activity 1", onLevel: "SE: 6.2D, 6.2D Module 1 Topic 4 Lesson 1 - 'Activity 1. Talk the Talk'", honors: "Map multi-tier decimal constraints along coordinate systems." },
-                21: { label: "Mod 1 Top 4 L3", focus: "Activity 1 and 2", onLevel: "SE: 6.3E, 6.8D Module 1 Topic 4 Lesson 3 - 'Activity 1 and 2. Talk the Talk'", honors: "Scale expressions containing high-density decimal parameters." },
-                22: { label: "Mod 1 Top 4 L4", focus: "Activity 1 and 2", onLevel: "SE: 6.3E, 6.8D Module 1 Topic 4 Lesson 4 - 'Activity 1 and 2'", honors: "Track exact limits for non-terminating repeating outputs." },
-                23: { label: "Mod 1 Top 4 L4", focus: "Activity 3 and 4", onLevel: "SE: 6.3E, 6.8D Module 1 Topic 4 Lesson 4 - 'Activity 3 and 4'", honors: "Isolate calculation bugs across nested arithmetic chains." },
-                24: { label: "Mod 1 Top 4 L4", focus: "Activity 5 and 6", onLevel: "SE: 6.3E, 6.8D Module 1 Topic 4 Lesson 4 - 'Activity 5 and 6'", honors: "Evaluate composite systems holding mixed fractional terms." },
+                18: { label: "Mod 1 Top 4 L1", focus: "Talk the Talk", onLevel: "SE: 6.2D, 6.2D Mod 1 Top 4 L1 - 'Activity 1. Talk the Talk'", honors: "Map multi-tier decimal constraints along coordinate systems." },
+                21: { label: "Mod 1 Top 4 L3", focus: "Activity 1 and 2", onLevel: "SE: 6.3E, 6.8D Mod 1 Top 4 L3 - 'Activity 1 and 2. Talk the Talk'", honors: "Scale expressions containing high-density decimal parameters." },
+                22: { label: "Mod 1 Top 4 L4", focus: "Activity 1 and 2", onLevel: "SE: 6.3E, 6.8D Mod 1 Top 4 L4 - 'Activity 1 and 2'", honors: "Track exact limits for non-terminating repeating outputs." },
+                23: { label: "Mod 1 Top 4 L4", focus: "Activity 3 and 4", onLevel: "SE: 6.3E, 6.8D Mod 1 Top 4 L4 - 'Activity 3 and 4'", honors: "Isolate calculation bugs across nested arithmetic chains." },
+                24: { label: "Mod 1 Top 4 L4", focus: "Activity 5 and 6", onLevel: "SE: 6.3E, 6.8D Mod 1 Top 4 L4 - 'Activity 5 and 6'", honors: "Evaluate composite systems holding mixed fractional terms." },
                 25: { label: "Station Day", focus: "MATHia Decimal Products", onLevel: "Station Day / Mathia-Decimal Products Skills Practice", honors: "Complete automated platform assignments in advanced tracks." },
-                28: { label: "CBA #2", isCba: true, focus: "Module 1 Topic 1&4", onLevel: "CBA #2: Shapes & Solids & Decimals", honors: "Execute honors assessment verifying complex multi-pass geometry." },
-                29: { label: "Mod 2 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.4A, 6.4D Module 2 Topic 1 Lesson 1 - 'Activity 1 and 2'", honors: "Define absolute scaling parameters utilizing functional variables." },
-                30: { label: "Mod 2 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.4A, 6.4C Module 2 Topic 1 Lesson 1 - 'Activity 4 and 5. Talk the Talk'", honors: "Translate proportional equations seamlessly to quadrant axes." }
+                28: { label: "CBA #2", isCba: true, focus: "Mod 1 Top 1&4", onLevel: "CBA #2: Shapes & Solids & Decimals", honors: "Execute honors assessment verifying complex multi-pass geometry." },
+                29: { label: "Mod 2 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.4A, 6.4D Mod 2 Top 1 L1 - 'Activity 1 and 2'", honors: "Define absolute scaling parameters utilizing functional variables." },
+                30: { label: "Mod 2 Top 1 L1", focus: "Talk the Talk", onLevel: "SE:6.4A, 6.4C Mod 2 Top 1 L1 - 'Activity 4 and 5. Talk the Talk'", honors: "Translate proportional equations seamlessly to quadrant axes." }
             }},
             october: { year: 2026, monthIndex: 9, content: {
-                1: { label: "Mod 2 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.4B, 6.4C Module 2 Topic 1 Lesson 2 - 'Activity 1 and 2'", honors: "Formulate linear coordinate rules straight from scaling models." },
+                1: { label: "Mod 2 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.4B, 6.4C Mod 2 Top 1 L2 - 'Activity 1 and 2'", honors: "Formulate linear coordinate rules straight from scaling models." },
                 2: { label: "Station Day", focus: "MATHia Ratios", onLevel: "Station Day / MATHia CB: Understanding Ratio Relationships", honors: "Advance software profiles through accelerated multi-variable grids." },
-                5: { label: "Mod 2 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.4B, 6.4E, 6.5A Module 2 Topic 1 Lesson 3 - 'Activity 1. Talk the Talk'", honors: "Extract scaling parameters analytically from dense matrices." },
-                6: { label: "Mod 2 Top 1 L3", focus: "Activity 3 and 4", onLevel: "SE:6.4B, 6.4E, 6.5A Module 2 Topic 1 Lesson 3 - 'Activity 3 and 4'", honors: "Isolate error configurations inside composite ratio metrics." },
+                5: { label: "Mod 2 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.4B, 6.4E, 6.5A Mod 2 Top 1 L3 - 'Activity 1. Talk the Talk'", honors: "Extract scaling parameters analytically from dense matrices." },
+                6: { label: "Mod 2 Top 1 L3", focus: "Activity 3 and 4", onLevel: "SE:6.4B, 6.4E, 6.5A Mod 2 Top 1 L3 - 'Activity 3 and 4'", honors: "Isolate error configurations inside composite ratio metrics." },
                 7: { label: "Station Day", focus: "Review", onLevel: "Station Day", honors: "Solve variable proportional equations across complex scenarios." },
-                8: { label: "Mod 2 Top 1 L3", focus: "Activity 5", onLevel: "SE:6.4B, 6.4E, 6.5A Module 2 Topic 1 Lesson 3 - 'Activity 5'", honors: "Formulate unified direct equations from open vector data." },
+                8: { label: "Mod 2 Top 1 L3", focus: "Activity 5", onLevel: "SE:6.4B, 6.4E, 6.5A Mod 2 Top 1 L3 - 'Activity 5'", honors: "Formulate unified direct equations from open vector data." },
                 9: { label: "Holiday", isHoliday: true, focus: "District Break" },
                 12: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
-                13: { label: "Station Day", focus: "MATHia Double Number Lines", onLevel: "Station Day / MATHia CB: Introduction to Double Number Lines", honors: "Complete tracking modules for multi-tiered rate systems." },
-                14: { label: "Mod 2 Top 1 L4", focus: "Activity 1 and 2", onLevel: "SE:6.4B, 6.4D Module 2 Topic 1 Lesson 4 - 'Activity 1 and 2'", honors: "Connect line slopes directly to core scaling multipliers." },
-                15: { label: "Mod 2 Top 1 L4", focus: "Activity 3", onLevel: "SE:6.4B, 6.4D, 6.5A Module 2 Topic 1 Lesson 4 - 'Activity 3. Talk the Talk'", honors: "Achieve platform validation markers inside honors profiles." },
-                16: { label: "Mod 2 Top 1 L5", focus: "Activity 2 and 3", onLevel: "SE:6.4E, 6.5A, 6.6C Module 2 Topic 1 Lesson 5 - 'Activity 2 and 3'", honors: "Define strict coordinate domain parameters across scales." },
-                19: { label: "Mod 2 Top 1 L6", focus: "Activity 1 and 2", onLevel: "SE:6.5A, 6.6C Module 2 Topic 1 Lesson 6 - 'Activity 1, 2'", honors: "Analyze non-zero intercept factors using high-level logic." },
-                20: { label: "Mod 2 Top 1 L6", focus: "Activity 3 and 4", onLevel: "SE:6.5A, 6.6C Module 2 Topic 1 Lesson 6 - 'Activity 3, 4'", honors: "Connect changing tabular scales directly to system intercepts." },
-                21: { label: "Mod 2 Top 1 L6", focus: "Talk the Talk", onLevel: "SE:6.5A, 6.6C Module 2 Topic 1 Lesson 6 - Talk the Talk", honors: "Synthesize linear equation sets analytically across grids." },
+                13: { label: "Station Day", focus: "MATHia Number Lines", onLevel: "Station Day / MATHia CB: Introduction to Double Number Lines", honors: "Complete tracking modules for multi-tiered rate systems." },
+                14: { label: "Mod 2 Top 1 L4", focus: "Activity 1 and 2", onLevel: "SE:6.4B, 6.4D Mod 2 Top 1 L4 - 'Activity 1 and 2'", honors: "Connect line slopes directly to core scaling multipliers." },
+                15: { label: "Mod 2 Top 1 L4", focus: "Talk the Talk", onLevel: "SE:6.4B, 6.4D, 6.5A Mod 2 Top 1 L4 - 'Activity 3. Talk the Talk'", honors: "Achieve platform validation markers inside honors profiles." },
+                16: { label: "Mod 2 Top 1 L5", focus: "Activity 2 and 3", onLevel: "SE:6.4E, 6.5A, 6.6C Mod 2 Top 1 L5 - 'Activity 2 and 3'", honors: "Define strict coordinate domain parameters across scales." },
+                19: { label: "Mod 2 Top 1 L6", focus: "Activity 1 and 2", onLevel: "SE:6.5A, 6.6C Mod 2 Top 1 L6 - 'Activity 1, 2'", honors: "Analyze non-zero intercept factors using high-level logic." },
+                20: { label: "Mod 2 Top 1 L6", focus: "Activity 3 and 4", onLevel: "SE:6.5A, 6.6C Mod 2 Top 1 L6 - 'Activity 3, 4'", honors: "Connect changing tabular scales directly to system intercepts." },
+                21: { label: "Mod 2 Top 1 L6", focus: "Talk the Talk", onLevel: "SE:6.5A, 6.6C Mod 2 Top 1 L6 - Talk the Talk", honors: "Synthesize linear equation sets analytically across grids." },
                 22: { label: "Station Day", focus: "MATHia Percents", onLevel: "Station Day / MATHia: Calculating Parts & Wholes in Percent Problems", honors: "Complete specialized fractional equation milestones in software." },
-                23: { label: "Mod 2 Top 2 L1", focus: "Activity 1", onLevel: "SE:6.4E, 6.4F, 6.4G, 6.5C Module 2 Topic 2 Lesson 1 - 'Activity 1'", honors: "Map out non-terminating conversion rules over inequalities." },
-                26: { label: "Mod 2 Top 2 L1", focus: "Activity 3", onLevel: "SE:6.4E, 6.4F, 6.4G, 6.5C Module 2 Topic 2 Lesson 1 - 'Activity 3'", honors: "Isolate wholesale value configurations mathematically." },
-                27: { label: "Mod 2 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2D, 6.4E, 6.4F Module 2 Topic 2 Lesson 2 - 'Activity 1 and 2'", honors: "Isolate missing variable dimensions inside complex financial models." },
-                28: { label: "Mod 2 Top 2 L2", focus: "Activity 3 and 4", onLevel: "SE:6.2D, 6.4E, 6.4F Module 2 Topic 2 Lesson 2 - 'Activity 3 and 4'", honors: "Formulate compound interest scaling metrics directly from texts." },
-                29: { label: "Mod 2 Top 2 L3", focus: "Activity 1 and 2", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 1, 2'", honors: "Isolate multi-stage parameter adjustments inside ledger rows." },
-                30: { label: "Mod 2 Top 2 L3", focus: "Activity 3", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 3'", honors: "Solve formula components to extract hidden cost data." }
+                23: { label: "Mod 2 Top 2 L1", focus: "Activity 1", onLevel: "SE:6.4E, 6.4F, 6.4G, 6.5C Mod 2 Top 2 L1 - 'Activity 1'", honors: "Map out non-terminating conversion rules over inequalities." },
+                26: { label: "Mod 2 Top 2 L1", focus: "Activity 3", onLevel: "SE:6.4E, 6.4F, 6.4G, 6.5C Mod 2 Top 2 L1 - 'Activity 3'", honors: "Isolate wholesale value configurations mathematically." },
+                27: { label: "Mod 2 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2D, 6.4E, 6.4F Mod 2 Top 2 L2 - 'Activity 1 and 2'", honors: "Isolate missing variable dimensions inside complex financial models." },
+                28: { label: "Mod 2 Top 2 L2", focus: "Activity 3 and 4", onLevel: "SE:6.2D, 6.4E, 6.4F Mod 2 Top 2 L2 - 'Activity 3 and 4'", honors: "Formulate compound interest scaling metrics directly from texts." },
+                29: { label: "Mod 2 Top 2 L3", focus: "Activity 1 and 2", onLevel: "SE:6.5B Mod 2 Top 2 L3 - 'Activity 1, 2'", honors: "Isolate multi-stage parameter adjustments inside ledger rows." },
+                30: { label: "Mod 2 Top 2 L3", focus: "Activity 3", onLevel: "SE:6.5B Mod 2 Top 2 L3 - 'Activity 3'", honors: "Solve formula components to extract hidden cost data." }
             }},
             november: { year: 2026, monthIndex: 10, content: {
-                2: { label: "Mod 2 Top 2 L3", focus: "Activity 4", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 4'", honors: "Evaluate non-linear asset variance profiles analytically." },
-                3: { label: "Station Day", focus: "MATHia FDP Review", onLevel: "Station Day / Mathia CB Fractions Decimal Percent Conversions/Review", honors: "Secure final master rankings across computational channels." },
-                4: { label: "CBA #3", isCba: true, focus: "Module 2 Topic 1&2", onLevel: "CBA #3: Ratios and Percents", honors: "Execute honors track test evaluating multi-step scale conversions." },
-                5: { label: "Mod 2 Top 3 L1", focus: "Activity 1 and 2", onLevel: "SE:6.4H Module 2 Topic 3 Lesson 1 - 'Activity 1 and 2'", honors: "Calculate complex compound velocity vectors ($d=rt$) fluidly." },
-                6: { label: "Mod 2 Top 3 L1", focus: "Activity 3 and 4", onLevel: "SE:6.4H Module 2 Topic 3 Lesson 1 - 'Activity 3 and 4'", honors: "Set up multi-tier inequality limits to filter rate anomalies." },
-                9: { label: "Station Day", focus: "MATHia Converting Systems", onLevel: "Station Day / Mathia CB: Converting within Systems", honors: "Verify operational metrics inside advanced computer workspaces." },
-                10: { label: "Mod 2 Top 3 L2", focus: "Activity 2 and 3", onLevel: "SE:6.4B, 6.4D Module 2 Topic 3 Lesson 2 - 'Activity 2 and 3'", honors: "Execute multi-pass unit factor tracking equations safely." },
-                11: { label: "Mod 2 Top 3 L2", focus: "Activity 4 and 5", onLevel: "SE:6.4B, 6.4D Module 2 Topic 3 Lesson 2 - 'Activity 4 and 5'", honors: "Map out dimensional variable matrices with decimal boundaries." },
-                12: { label: "Mod 2 Top 3 L3", focus: "Activity 1 and 3", onLevel: "SE:6.4D, 6.5A Module 2 Topic 3 Lesson 3 - 'Activity 1 and 3'", honors: "Formulate percent scaling metrics utilizing explicit algebra formulas." },
-                13: { label: "Station Day", focus: "MATHia Unit Rates", onLevel: "Station Day / MATHia Mastery Lesson Determing and Comparing Unit Rates", honors: "Unlock complex rate conversion modules in student profiles." },
+                2: { label: "Mod 2 Top 2 L3", focus: "Activity 4", onLevel: "SE:6.5B Mod 2 Top 2 L3 - 'Activity 4'", honors: "Evaluate non-linear asset variance profiles analytically." },
+                3: { label: "Station Day", focus: "MATHia FDP", onLevel: "Station Day / Mathia CB Fractions Decimal Percent Conversions", honors: "Secure final master rankings across computational channels." },
+                4: { label: "CBA #3", isCba: true, focus: "Mod 2 Top 1&2", onLevel: "CBA #3: Ratios and Percents", honors: "Execute honors track test evaluating multi-step scale conversions." },
+                5: { label: "Mod 2 Top 3 L1", focus: "Activity 1 and 2", onLevel: "SE:6.4H Mod 2 Top 3 L1 - 'Activity 1 and 2'", honors: "Calculate complex compound velocity vectors ($d=rt$) fluidly." },
+                6: { label: "Mod 2 Top 3 L1", focus: "Activity 3 and 4", onLevel: "SE:6.4H Mod 2 Top 3 L1 - 'Activity 3 and 4'", honors: "Set up multi-tier inequality limits to filter rate anomalies." },
+                9: { label: "Station Day", focus: "MATHia Converting", onLevel: "Station Day / Mathia CB: Converting within Systems", honors: "Verify operational metrics inside advanced computer workspaces." },
+                10: { label: "Mod 2 Top 3 L2", focus: "Activity 2 and 3", onLevel: "SE:6.4B, 6.4D Mod 2 Top 3 L2 - 'Activity 2 and 3'", honors: "Execute multi-pass unit factor tracking equations safely." },
+                11: { label: "Mod 2 Top 3 L2", focus: "Activity 4 and 5", onLevel: "SE:6.4B, 6.4D Mod 2 Top 3 L2 - 'Activity 4 and 5'", honors: "Map out dimensional variable matrices with decimal boundaries." },
+                12: { label: "Mod 2 Top 3 L3", focus: "Activity 1 and 3", onLevel: "SE:6.4D, 6.5A Mod 2 Top 3 L3 - 'Activity 1 and 3'", honors: "Formulate percent scaling metrics utilizing explicit algebra formulas." },
+                13: { label: "Station Day", focus: "MATHia Unit Rates", onLevel: "Station Day / MATHia Determing and Comparing Unit Rates", honors: "Unlock complex rate conversion modules in student profiles." },
                 16: { label: "Flex Day", focus: "Review", onLevel: "Flex Day", honors: "Deconstruct structural algebraic anomalies via team whiteboards." },
-                17: { label: "CBA #4", isCba: true, focus: "Mod 2 Top 3 & Mod 3 Top 1", onLevel: "CBA #4: Unit Rates & Conversions / Signed Numbers", honors: "Execute honors evaluation testing multi-stage geometry and conversions." },
-                18: { label: "Mod 3 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.2C, 6.2D Module 3 Topic 1 Lesson 1 - 'Activity 1 and 2'", honors: "Graph zero-boundary equations across multi-tier constraints." },
-                19: { label: "Mod 3 Top 1 L1", focus: "Talk the Talk", onLevel: "SE:6.2C, 6.2D Module 3 Topic 1 Lesson 1 - 'Activity 4 and 5. Talk the Talk'", honors: "Apply absolute inequalities to isolate changing system variables." },
+                17: { label: "CBA #4", isCba: true, focus: "Unit Rates & Conversions", onLevel: "CBA #4: Unit Rates & Conversions / Signed Numbers", honors: "Execute honors evaluation testing multi-stage geometry and conversions." },
+                18: { label: "Mod 3 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.2C, 6.2D Mod 3 Top 1 L1 - 'Activity 1 and 2'", honors: "Graph zero-boundary equations across multi-tier constraints." },
+                19: { label: "Mod 3 Top 1 L1", focus: "Talk the Talk", onLevel: "SE:6.2C, 6.2D Mod 3 Top 1 L1 - 'Activity 4 and 5. Talk the Talk'", honors: "Apply absolute inequalities to isolate changing system variables." },
                 20: { label: "Station Day", focus: "MATHia Number Lines", onLevel: "Station Day / MATHia CB: Representing Integers on Number Lines", honors: "Unlock advanced functional polynomial workspaces in software lanes." },
-                23: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
-                24: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
-                25: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
-                26: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
-                27: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
-                30: { label: "Mod 3 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2B Module 3 Topic 1 Lesson 2 - 'Activity 1 and 2'", honors: "Formulate logic proofs tracking signed variable configurations." }
+                23: { label: "Holiday", isHoliday: true, focus: "Thanksgiving Break" },
+                24: { label: "Holiday", isHoliday: true, focus: "Thanksgiving Break" },
+                25: { label: "Holiday", isHoliday: true, focus: "Thanksgiving Break" },
+                26: { label: "Holiday", isHoliday: true, focus: "Thanksgiving Break" },
+                27: { label: "Holiday", isHoliday: true, focus: "Thanksgiving Break" },
+                30: { label: "Mod 3 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2B Mod 3 Top 1 L2 - 'Activity 1 and 2'", honors: "Formulate logic proofs tracking signed variable configurations." }
             }},
             december: { year: 2026, monthIndex: 11, content: {
-                1: { label: "Mod 3 Top 1 L2", focus: "Talk the Talk", onLevel: "SE:6.2B Module 3 Topic 1 Lesson 2 - 'Activity 3. Talk the Talk'", honors: "Bound complex coordinate boundaries utilizing absolute value constraints." },
-                2: { label: "Mod 3 Top 1 L3", focus: "Activity 1 and 2", onLevel: "SE:6.2A, 6.2C Module 3 Topic 1 Lesson 3 - 'Activity 1 and 2. Talk the Talk'", honors: "Analyze dense population variance arrays analytically." },
+                1: { label: "Mod 3 Top 1 L2", focus: "Talk the Talk", onLevel: "SE:6.2B Mod 3 Top 1 L2 - 'Activity 3. Talk the Talk'", honors: "Bound complex coordinate boundaries utilizing absolute value constraints." },
+                2: { label: "Mod 3 Top 1 L3", focus: "Activity 1 and 2", onLevel: "SE:6.2A, 6.2C Mod 3 Top 1 L3 - 'Activity 1 and 2. Talk the Talk'", honors: "Analyze dense population variance arrays analytically." },
                 3: { label: "Station Day", focus: "MATHia Absolute Value", onLevel: "Station Day / MATHia CB: Using Absolute Value and Classifying Rational Numbers", honors: "Verify algebraic system operations inside software profiles." },
-                4: { label: "Mod 3 Top 1 L4", focus: "Activity 1", onLevel: "SE:6.11A Module 3 Topic 1 Lesson 4 - 'Getting Started. Activity 1'", honors: "Plot complex multi-point polygons across all 4 quadrants." },
-                7: { label: "Mod 3 Top 1 L4", focus: "Activity 3 and 4", onLevel: "SE:6.11A Module 3 Topic 1 Lesson 4 - 'Activity 3 and 4'", honors: "Calculate precise geometric distance tracks between grid vectors." },
-                8: { label: "Station Day", focus: "MATHia Coordinate Plane", onLevel: "Station Day / MATHia ALL CBs for Extending the Coordinate Plane", honors: "Master spatial mapping challenges inside student profiles." },
-                9: { label: "Mod 3 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 1 - 'Getting Started, Activity 1 and 2. Talk the Talk'", honors: "Track coordinate position changes using vector movement models." },
-                10: { label: "Mod 3 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 2 - 'Getting Started, Activity 1'", honors: "Prove integer subtraction rules using algebraic inverse metrics." },
-                11: { label: "Mod 3 Top 2 L2", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 2 - 'Activity 2. Talk the Talk'", honors: "Formulate geometric transformation loops over multi-quadrant fields." },
+                4: { label: "Mod 3 Top 1 L4", focus: "Activity 1", onLevel: "SE:6.11A Mod 3 Top 1 L4 - 'Getting Started. Activity 1'", honors: "Plot complex multi-point polygons across all 4 quadrants." },
+                7: { label: "Mod 3 Top 1 L4", focus: "Activity 3 and 4", onLevel: "SE:6.11A Mod 3 Top 1 L4 - 'Activity 3 and 4'", honors: "Calculate precise geometric distance tracks between grid vectors." },
+                8: { label: "Station Day", focus: "MATHia Coordinates", onLevel: "Station Day / MATHia ALL CBs for Extending the Coordinate Plane", honors: "Master spatial mapping challenges inside student profiles." },
+                9: { label: "Mod 3 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L1 - 'Getting Started, Activity 1 and 2. Talk the Talk'", honors: "Track coordinate position changes using vector movement models." },
+                10: { label: "Mod 3 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L2 - 'Getting Started, Activity 1'", honors: "Prove integer subtraction rules using algebraic inverse metrics." },
+                11: { label: "Mod 3 Top 2 L2", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L2 - 'Activity 2. Talk the Talk'", honors: "Formulate geometric transformation loops over multi-quadrant fields." },
                 14: { label: "Station Day", focus: "MATHia Adding/Subtracting", onLevel: "Station Day / Mathia CB Adding and Subtracting Negative Integers", honors: "Isolate multi-bracket negative limits within algebraic properties." },
-                15: { label: "Mod 3 Top 2 L4", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 4 - 'Activity 1 and 2'", honors: "Balance multi-variable inequality systems containing integers." },
+                15: { label: "Mod 3 Top 2 L4", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L4 - 'Activity 1 and 2'", honors: "Balance multi-variable inequality systems containing integers." },
                 16: { label: "Early Release", isHoliday: true, focus: "Flex day" },
                 17: { label: "Early Release", isHoliday: true, focus: "Flex day" },
                 18: { label: "Holiday", isHoliday: true, focus: "Winter Break Starts" },
-                21: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                22: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                23: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                24: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                25: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                28: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                29: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                30: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
-                31: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" }
+                21: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                22: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                23: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                24: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                25: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                28: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                29: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                30: { label: "Holiday", isHoliday: true, focus: "Winter Break" },
+                31: { label: "Holiday", isHoliday: true, focus: "Winter Break" }
             }},
             january: { year: 2027, monthIndex: 0, content: {
                 1: { label: "Holiday", isHoliday: true, focus: "New Years" },
                 4: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
                 5: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
-                6: { label: "Mod 3 Top 2 L3", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 3 - 'Activity 1 and 2'", honors: "Isolate sign conversion drops within expanded linear expressions." },
-                7: { label: "Mod 3 Top 2 L3", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 3 - 'Activity 3, Talk the Talk'", honors: "Evaluate deep nested expressions containing exponents and weights." },
+                6: { label: "Mod 3 Top 2 L3", focus: "Activity 1 and 2", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L3 - 'Activity 1 and 2'", honors: "Isolate sign conversion drops within expanded linear expressions." },
+                7: { label: "Mod 3 Top 2 L3", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L3 - 'Activity 3, Talk the Talk'", honors: "Evaluate deep nested expressions containing exponents and weights." },
                 8: { label: "Station Day", focus: "MATHia Products", onLevel: "Station Day / MATHia CB: Integer Products and Quotients", honors: "Secure course progress milestones inside honors system tracks." },
-                11: { label: "Mod 3 Top 2 L4", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 4 - 'Activity 3, Talk the Talk'", honors: "Isolate balancing criteria across multi-tier rational equations." },
-                12: { label: "Mod 3 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 5 - 'Getting Started, Activity 1'", honors: "Isolate variables inside rational fractional equation steps." },
-                13: { label: "Mod 3 Top 2 L5", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 5 - 'Activity 2 and 3. Talk the Talk'", honors: "Clear grouped balancing configurations using coordinate geometry maps." },
-                14: { label: "CBA #5", isCba: true, focus: "Module 3 Topic 2", onLevel: "CBA #5: Operating with Integers", honors: "Execute honors assessment tracking advanced analytical analytics." },
+                11: { label: "Mod 3 Top 2 L4", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L4 - 'Activity 3, Talk the Talk'", honors: "Isolate balancing criteria across multi-tier rational equations." },
+                12: { label: "Mod 3 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L5 - 'Getting Started, Activity 1'", honors: "Isolate variables inside rational fractional equation steps." },
+                13: { label: "Mod 3 Top 2 L5", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Mod 3 Top 2 L5 - 'Activity 2 and 3. Talk the Talk'", honors: "Clear grouped balancing configurations using coordinate geometry maps." },
+                14: { label: "CBA #5", isCba: true, focus: "Mod 3 Top 2", onLevel: "CBA #5: Operating with Integers", honors: "Execute honors assessment tracking advanced analytical analytics." },
                 15: { label: "Holiday", isHoliday: true, focus: "School Break" },
-                18: { label: "Holiday", isHoliday: true, focus: "Martin Luther King Jr. Day" },
-                19: { label: "Mod 4 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 1, and 2'", honors: "Simplify algebraic expression items using product exponent laws." },
-                20: { label: "Mod 4 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 4 and 5'", honors: "Write functional algebraic models containing multiple independent inputs." },
+                18: { label: "Holiday", isHoliday: true, focus: "MLK Day" },
+                19: { label: "Mod 4 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7A, 6.7B Mod 4 Top 1 L1 - 'Activity 1, and 2'", honors: "Simplify algebraic expression items using product exponent laws." },
+                20: { label: "Mod 4 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.3D, 6.7A, 6.7B Mod 4 Top 1 L1 - 'Activity 4 and 5'", honors: "Write functional algebraic models containing multiple independent inputs." },
                 21: { label: "Station Day", focus: "MATHia Exponents", onLevel: "Station Day / Mathia Writing and Evaluating Exponent Expressions", honors: "Accelerate past baseline lines to model multi-variable variables." },
-                22: { label: "Mod 4 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 1 and 2'", honors: "Differentiate variables, coefficients, and constants inside proofs." },
-                25: { label: "Mod 4 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 3 and 4'", honors: "Plug fractional inputs and negative weights into nested equations." },
-                26: { label: "Mod 4 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.7B, 6.7C, 6.7D Module 4 Topic 1 Lesson 3 - 'Activity 1, 2 and 4, Talk the Talk'", honors: "Condense long fractional variable arrays into unified models." },
-                27: { label: "Mod 4 Top 1 L4", focus: "Talk the Talk", onLevel: "SE:6.7C, 6.7D Module 4 Topic 1 Lesson 4 - 'Activity 1. Talk the Talk'", honors: "Formulate high-speed inverse calculation challenges on whiteboards." },
+                22: { label: "Mod 4 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D Mod 4 Top 1 L2 - 'Activity 1 and 2'", honors: "Differentiate variables, coefficients, and constants inside proofs." },
+                25: { label: "Mod 4 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.3D, 6.7D Mod 4 Top 1 L2 - 'Activity 3 and 4'", honors: "Plug fractional inputs and negative weights into nested equations." },
+                26: { label: "Mod 4 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.7B, 6.7C, 6.7D Mod 4 Top 1 L3 - 'Activity 1, 2 and 4, Talk the Talk'", honors: "Condense long fractional variable arrays into unified models." },
+                27: { label: "Mod 4 Top 1 L4", focus: "Talk the Talk", onLevel: "SE:6.7C, 6.7D Mod 4 Top 1 L4 - 'Activity 1. Talk the Talk'", honors: "Formulate high-speed inverse calculation challenges on whiteboards." },
                 28: { label: "Station Day", focus: "MATHia Expressions", onLevel: "Station Day / Mathia Identifying Parts of Simple Algebraic Expressions", honors: "Achieve platform milestones mapping non-proportional parameters." },
-                29: { label: "Mod 4 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 1, 2'", honors: "Group and isolate multi-variable fields to prepare for factoring." }
+                29: { label: "Mod 4 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Mod 4 Top 2 L1 - 'Activity 1, 2'", honors: "Group and isolate multi-variable fields to prepare for factoring." }
             }},
             february: { year: 2027, monthIndex: 1, content: {
-                1: { label: "Mod 4 Top 2 L1", focus: "Activity 5", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 5'", honors: "Plot conditional variable thresholds directly on open charts." },
+                1: { label: "Mod 4 Top 2 L1", focus: "Activity 5", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Mod 4 Top 2 L1 - 'Activity 5'", honors: "Plot conditional variable thresholds directly on open charts." },
                 2: { label: "RLA MOCK", focus: "Testing Sim", onLevel: "RLA MOCK DAY", honors: "Execute RLA benchmarks under formal testing rules." },
-                3: { label: "Mod 4 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.9A, 6.10A Module 4 Topic 2 Lesson 2 - 'Activity 1 and 2 include subtraction'", honors: "Calculate functional equations across rise-over-run structures." },
-                4: { label: "Mod 4 Top 2 L3", focus: "Activity 1, 2, and 4", onLevel: "SE:6.9A, 6.10A Module 4 Topic 2 Lesson 3 - 'Activity 1, 2, and 4 include division'", honors: "Map out functional models across all four quadrant fields." },
-                5: { label: "Mod 4 Top 2 L4", focus: "Activity 1 and 3", onLevel: "SE:6.8C, 6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 4 - 'Activity 1 and 3. Talk the Talk'", honors: "Isolate expressions holding variables on both sides ($ax+b=cx+d$)." },
-                8: { label: "Mod 4 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Getting Started Activity 1'", honors: "Simplify and balance long algebraic equations completely." },
-                9: { label: "Mod 4 Top 2 L5", focus: "Activity 2 and 3", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Activity 2 and 3'", honors: "Translate between graphs, tables, and rules seamlessly." },
+                3: { label: "Mod 4 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.9A, 6.10A Mod 4 Top 2 L2 - 'Activity 1 and 2 include subtraction'", honors: "Calculate functional equations across rise-over-run structures." },
+                4: { label: "Mod 4 Top 2 L3", focus: "Activity 1, 2, and 4", onLevel: "SE:6.9A, 6.10A Mod 4 Top 2 L3 - 'Activity 1, 2, and 4 include division'", honors: "Map out functional models across all four quadrant fields." },
+                5: { label: "Mod 4 Top 2 L4", focus: "Activity 1 and 3", onLevel: "SE:6.8C, 6.9A, 6.9B, 6.9C, 6.10A Mod 4 Top 2 L4 - 'Activity 1 and 3. Talk the Talk'", honors: "Isolate expressions holding variables on both sides ($ax+b=cx+d$)." },
+                8: { label: "Mod 4 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Mod 4 Top 2 L5 - 'Getting Started Activity 1'", honors: "Simplify and balance long algebraic equations completely." },
+                9: { label: "Mod 4 Top 2 L5", focus: "Activity 2 and 3", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Mod 4 Top 2 L5 - 'Activity 2 and 3'", honors: "Translate between graphs, tables, and rules seamlessly." },
                 10: { label: "Station Day", focus: "MATHia Equations", onLevel: "Station Day / Mathia Representing One-Step Equations OR Modeling One-Step Equations", honors: "Achieve course platform targets for non-proportional expressions." },
-                11: { label: "CBA #6", isCba: true, focus: "Module 4 Topic 1&2", onLevel: "CBA #6: Expressions, Equations, Inequalities", honors: "Execute honors track exam covering advanced proportional lines." },
+                11: { label: "CBA #6", isCba: true, focus: "Mod 4 Top 1&2", onLevel: "CBA #6: Expressions, Equations, Inequalities", honors: "Execute honors track exam covering advanced proportional lines." },
                 12: { label: "Holiday", isHoliday: true, focus: "School Break" },
                 15: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
                 16: { label: "Telpas / Station", focus: "Testing & Review", onLevel: "Telpas / Station Day (optional)", honors: "Execute velocity tracks balancing mixed signed components." },
                 17: { label: "Telpas / Station", focus: "Testing & Review", onLevel: "Telpas / Station Day (optional)", honors: "Match side metrics across scaled geometric items accurately." },
-                18: { label: "Mod 4 Top 3 L1", focus: "Activity 2.5", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 1 - 'Activity 2.5' (Mathia Modeling Scenarios)", honors: "Compute missing lengths on compound embedded structures." },
-                19: { label: "Mod 4 Top 3 L2", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 2 - 'Getting Started Activity 1 and Talk the Talk'", honors: "Scale multidimensional map regions using custom ratio metrics." },
-                22: { label: "Mod 4 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 1 and 2'", honors: "Confirm if side lengths allow a true closed triangle to form." },
-                23: { label: "Mod 4 Top 3 L3", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 3, Talk the Talk'", honors: "Write balance equations based on adjacent angle laws." },
-                24: { label: "Mod 4 Top 3 L4", focus: "Activity 1", onLevel: "SE:6.5A, 6.6B, 6.6C Module 4 Topic 3 Lesson 4 - 'Activity 1'", honors: "Determine if shape constraints trigger multiple triangle configurations." },
-                25: { label: "Mod 4 Top 3 L5", focus: "Activity 6", onLevel: "SE:6.6A, 6.6C, 6.11A Module 4 Topic 3 Lesson 5 - 'Activity 6'", honors: "Compute total multi-event compound sample spaces mathematically." },
+                18: { label: "Mod 4 Top 3 L1", focus: "Activity 2.5", onLevel: "SE:6.6A, 6.6B, 6.6C Mod 4 Top 3 L1 - 'Activity 2.5' (Mathia Modeling Scenarios)", honors: "Compute missing lengths on compound embedded structures." },
+                19: { label: "Mod 4 Top 3 L2", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Mod 4 Top 3 L2 - 'Getting Started Activity 1 and Talk the Talk'", honors: "Scale multidimensional map regions using custom ratio metrics." },
+                22: { label: "Mod 4 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE:6.6A, 6.6B, 6.6C Mod 4 Top 3 L3 - 'Activity 1 and 2'", honors: "Confirm if side lengths allow a true closed triangle to form." },
+                23: { label: "Mod 4 Top 3 L3", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Mod 4 Top 3 L3 - 'Activity 3, Talk the Talk'", honors: "Write balance equations based on adjacent angle laws." },
+                24: { label: "Mod 4 Top 3 L4", focus: "Activity 1", onLevel: "SE:6.5A, 6.6B, 6.6C Mod 4 Top 3 L4 - 'Activity 1'", honors: "Determine if shape constraints trigger multiple triangle configurations." },
+                25: { label: "Mod 4 Top 3 L5", focus: "Activity 6", onLevel: "SE:6.6A, 6.6C, 6.11A Mod 4 Top 3 L5 - 'Activity 6'", honors: "Compute total multi-event compound sample spaces mathematically." },
                 26: { label: "Station Day", focus: "MATHia Scenarios", onLevel: "Station Day / MATHia Writing an Expression from a Scenario, Table, or Graph", honors: "Execute comprehensive honors mock verification exam." }
             }},
             march: { year: 2027, monthIndex: 2, content: {
                 1: { label: "MATH MOCK", isCba: true, focus: "Testing Sim", onLevel: "MATH MOCK DAY", honors: "Analyze population variance arrays analytically under test rules." },
-                2: { label: "CBA #7", isCba: true, focus: "Module 4 Topic 3", onLevel: "CBA #7: Graphing Quantitative Relationships", honors: "Execute honors version testing advanced probability and circles." },
-                3: { label: "Mod 5 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 1 and 2'", honors: "Deconstruct multi-stage compound coordinate data grids." },
-                4: { label: "Mod 5 Top 1 L1", focus: "Activity 3", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 3 and Skills Practice pg 4'", honors: "Calculate mean absolute deviation fields across baseline arrays." },
-                5: { label: "Mod 5 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 1 and 2'", honors: "Log experimental outcome counts from automated sample tools." },
-                8: { label: "Mod 5 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 3 and 4'", honors: "Compare recorded experiment traits back to theoretical bounds." },
+                2: { label: "CBA #7", isCba: true, focus: "Mod 4 Top 3", onLevel: "CBA #7: Graphing Quantitative Relationships", honors: "Execute honors version testing advanced probability and circles." },
+                3: { label: "Mod 5 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.13B Mod 5 Top 1 L1 - 'Activity 1 and 2'", honors: "Deconstruct multi-stage compound coordinate data grids." },
+                4: { label: "Mod 5 Top 1 L1", focus: "Activity 3", onLevel: "SE:6.13B Mod 5 Top 1 L1 - 'Activity 3 and Skills Practice pg 4'", honors: "Calculate mean absolute deviation fields across baseline arrays." },
+                5: { label: "Mod 5 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.12A, 6.13A Mod 5 Top 1 L2 - 'Activity 1 and 2'", honors: "Log experimental outcome counts from automated sample tools." },
+                8: { label: "Mod 5 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.12A, 6.13A Mod 5 Top 1 L2 - 'Activity 3 and 4'", honors: "Compare recorded experiment traits back to theoretical bounds." },
                 9: { label: "Station Day", focus: "MATHia Dot Plots", onLevel: "Station Day / MATHia Interpreting Dot Plots OR Exploring Histograms", honors: "Complete advanced permutation panels inside profile tasks." },
-                10: { label: "Mod 5 Top 1 L3", focus: "Activity 1", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 1'", honors: "Review compound probability blocks and geometric equations." },
-                11: { label: "Mod 5 Top 1 L3", focus: "Activity 2 and 3", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 2 and 3. Talk the Talk'", honors: "Review non-proportional function intercepts and straight lines." },
-                12: { label: "Mod 5 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.12A, 6.12B, 6.12D, 6.13A Module 5 Topic 2 Lesson 2 - 'Getting Started, Activity 1'", honors: "Review circular volumes and composite shape area parameters." },
-                15: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                16: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                17: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                18: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                19: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                22: { label: "Mod 5 Top 2 L1", focus: "Activity 1, 2, 3", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 1, 2 and 3'", honors: "Review population dataset comparisons and structural survey matrices." },
-                23: { label: "Mod 5 Top 2 L1", focus: "Activity 4", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 4'", honors: "Execute rapid inverse balancing warmups on campus whiteboards." },
-                24: { label: "Mod 5 Top 2 L3", focus: "Activity 3 and 5", onLevel: "SE:6.12D Module 5 Topic 2 Lesson 3 - 'Activity 3 and 5'", honors: "Compile numeric project data files onto structural media assets." },
+                10: { label: "Mod 5 Top 1 L3", focus: "Activity 1", onLevel: "SE:6.12A, 6.12D, 6.13A Mod 5 Top 1 L3 - 'Activity 1'", honors: "Review compound probability blocks and geometric equations." },
+                11: { label: "Mod 5 Top 1 L3", focus: "Activity 2 and 3", onLevel: "SE:6.12A, 6.12D, 6.13A Mod 5 Top 1 L3 - 'Activity 2 and 3. Talk the Talk'", honors: "Review non-proportional function intercepts and straight lines." },
+                12: { label: "Mod 5 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.12A, 6.12B, 6.12D, 6.13A Mod 5 Top 2 L2 - 'Getting Started, Activity 1'", honors: "Review circular volumes and composite shape area parameters." },
+                15: { label: "Holiday", isHoliday: true, focus: "Spring Break" },
+                16: { label: "Holiday", isHoliday: true, focus: "Spring Break" },
+                17: { label: "Holiday", isHoliday: true, focus: "Spring Break" },
+                18: { label: "Holiday", isHoliday: true, focus: "Spring Break" },
+                19: { label: "Holiday", isHoliday: true, focus: "Spring Break" },
+                22: { label: "Mod 5 Top 2 L1", focus: "Activity 1, 2, 3", onLevel: "SE:6.12B, 6.12C Mod 5 Top 2 L1 - 'Activity 1, 2 and 3'", honors: "Review population dataset comparisons and structural survey matrices." },
+                23: { label: "Mod 5 Top 2 L1", focus: "Activity 4", onLevel: "SE:6.12B, 6.12C Mod 5 Top 2 L1 - 'Activity 4'", honors: "Execute rapid inverse balancing warmups on campus whiteboards." },
+                24: { label: "Mod 5 Top 2 L3", focus: "Activity 3 and 5", onLevel: "SE:6.12D Mod 5 Top 2 L3 - 'Activity 3 and 5'", honors: "Compile numeric project data files onto structural media assets." },
                 25: { label: "Station Day", focus: "MATHia Metrics", onLevel: "Station Day / MATHia Calculating Mean, Median, Mode, and Range", honors: "Organize project logic files into clear classroom documentation." },
                 26: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Analyze advanced secondary math equations to preview next year." },
                 29: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Analyze advanced secondary math equations to preview next year." },
@@ -578,38 +579,26 @@
                 14: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
                 15: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
                 16: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
-                19: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
-                20: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
-                21: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block", honors: "Final check of formula sheets and reference materials." },
-                22: { label: "MATH STAAR", isCba: true, focus: "State Evaluation", onLevel: "Official MATH STAAR test", honors: "Official MATH STAAR test execution." },
-                23: { label: "Mod 4 Top 4 L2", focus: "Lesson 2", onLevel: "SE: 6.14A, 6.14B Module 4 Topic 4 Lesson 2", honors: "Weigh asset return percentages against risk variables precisely." },
-                26: { label: "Mod 4 Top 4 L3", focus: "Lesson 3", onLevel: "SE: 6.14C, 6.14E, 6.14F Module 4 Topic 4 Lesson 3", honors: "Map out full multi-year financial budget templates for tracks." },
-                27: { label: "Mod 4 Top 4 L1", focus: "Activity 1 and 2", onLevel: "SE: 6.14A, 6.14D Module 4 Topic 4 Lesson 1 - 'Activity 1 and 2. Talk the Talk'", honors: "Formulate business capitalization metrics tracking overhead costs." },
-                28: { label: "Station Day", focus: "Optional Skills", onLevel: "Station Day (option)", honors: "Design precise structural grids using fractional scale values." },
-                29: { label: "Mod 4 Top 4 L4", focus: "Talk the Talk", onLevel: "SE: 6.14H Module 4 Topic 4 Lesson 4 - 'Activity 3. Talk the Talk'", honors: "Refine multi-variable variables inside tracking project sheets." },
-                30: { label: "Mod 4 Top 4 L5", focus: "Talk the Talk", onLevel: "SE: 6.14G Module 4 Topic 4 Lesson 5 - 'Activity 1 and 3. Talk the Talk'", honors: "Confirm complete master level badges within platform tracks." }
+                19: { label: "Bridge to 7th Honors", focus: "Transition Bridge", onLevel: "Since ALL 6th enters 7th Honors, pacing enters 7th standards.", honors: "Since ALL 6th enters 7th Honors, pacing enters 7th standards." },
+                20: { label: "Mod 5 Top 1 L1 (7th)", focus: "Lesson 1", onLevel: "7.5B, 7.8C, 7.9B Mod 5 Top 1 L1", honors: "7.5B, 7.8C, 7.9B Mod 5 Top 1 L1" },
+                21: { label: "Mod 5 Top 1 L1 (7th)", focus: "Circles", onLevel: "7.5B, 7.8C, 7.9B Mod 5 Top 1 L1 (Mathia Investigating Circles)", honors: "7.5B, 7.8C, 7.9B Mod 5 Top 1 L1 (Mathia Investigating Circles)" },
+                22: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Mod 5 Top 1 L2", honors: "7.4B, 7.8C, 7.9B Mod 5 Top 1 L2" },
+                23: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Mod 5 Top 1 L2", honors: "7.4B, 7.8C, 7.9B Mod 5 Top 1 L2" },
+                26: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Mod 5 Top 1 L3", honors: "7.9B, 7.9C Mod 5 Top 1 L3" },
+                27: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Mod 5 Top 1 L3", honors: "7.9B, 7.9C Mod 5 Top 1 L3" },
+                28: { label: "Station Day", focus: "MATHia Area Formula", onLevel: "Station Day Mathia: Developing the Area Formula for Circles", honors: "Station Day Mathia: Developing the Area Formula for Circles" },
+                29: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                30: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" }
             }},
             may: { year: 2027, monthIndex: 4, content: {
-                3: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)", honors: "Organize project files into clear technical documentation." },
-                4: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)", honors: "Defend equation models before teacher evaluation panels." },
-                5: { label: "7th Honors Path", focus: "Transition Bridge", onLevel: "Since ALL 6th enters 7th Honors, pacing enters 7th standards.", honors: "Analyze advanced secondary math equations to preview next year." },
-                6: { label: "Mod 5 Top 1 L1 (7th)", focus: "Lesson 1", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1", honors: "M5 T1 L1: Analyze circle parameters to derive pi ratios." },
-                7: { label: "Mod 5 Top 1 L1 (7th)", focus: "Circles", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1 (Mathia Investigating Circles)", honors: "M5 T1 L1: MATHia Investigating Circles software panels." },
-                10: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2", honors: "M5 T1 L2: Isolate perimeters utilizing circular boundary lines." },
-                11: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2", honors: "M5 T1 L2: Compute flat boundary contents via $A = \\pi r^2$." },
-                12: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3", honors: "M5 T1 L3: Calculate solid prism external layer fields." },
-                13: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3", honors: "M5 T1 L3: MATHia Developing the Area Formula for Circles." },
-                14: { label: "Station Day", focus: "MATHia Area Formula", onLevel: "Station Day Mathia: Developing the Area Formula for Circles", honors: "Calculate solid prism geometric interior storage capacities." },
-                17: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Conclude final structural secondary pathway records cleanly." },
-                18: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Conclude final structural secondary pathway records cleanly." },
-                19: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Complete interactive peer team math verification layouts." },
-                20: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Complete transitional portfolio checkouts with instructors." },
-                21: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Prepare for Early Release and summer track goals." },
-                24: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Final classroom wrap up and records submission." },
-                25: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Final classroom wrap up and records submission." },
-                26: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
-                27: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
-                28: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" }
+                3: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                4: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                5: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                6: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                7: { label: "Flex Day", focus: "Review", onLevel: "Flex day", honors: "Flex day" },
+                10: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing" },
+                11: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing" },
+                12: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing" }
             }}
         };
 
