@@ -285,7 +285,7 @@
                 <div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Thursday</div><div>Friday</div>
             </div>
             <div class="days-grid" id="days-grid-container">
-                </div>
+            </div>
         </div>
 
         <div class="details-sidebar">
@@ -316,4 +316,207 @@
                         <td><strong>Distributive Property</strong></td>
                         <td>Numeric prime factoring & array modeling (Sept)</td>
                         <td>Factoring numerical expressions via GCF structural arrays</td>
-                        <td>Est
+                        <td>Establishes core numerical fluency required for algebra.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Composite Area</strong></td>
+                        <td>Decomposing basic structures into standard rectangles & triangles (Oct)</td>
+                        <td>Advanced compound geometry tracking arcs, circles, & curves (Jan)</td>
+                        <td>A clean, multi-pass sequence designed to bridge 6th base to 7th Honors geometry.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integer Operations</strong></td>
+                        <td>Absolute values, sign scales, & primitive models</td>
+                        <td>Four-quadrant calculations, deep products, & quotients (Feb)</td>
+                        <td>Heavy emphasis on visualization techniques before mechanical computation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantitative Relationships</strong></td>
+                        <td>Basic proportional coordinate tracking & verbal graphs</td>
+                        <td>Direct functional mappings ($y=kx$, $y=x+b$) across 4 structures (March)</td>
+                        <td>Highly tested STAAR anchor window. Focus heavily on modeling conversions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // --- MASTER CALENDAR DATABASE MATRIX ---
+        const masterCalendar = {
+            september: [
+                { date: "Sept 14", label: "M1 T1 L1 Start", isHoliday: false, isCba: false, focus: "Getting Started / Factors & Multiples", onLevel: "M1 T1 Lesson 1: Introduction to Factors & Multiples.", honors: "Same pacing frame; establish core math communication protocols." },
+                { date: "Sept 15", label: "M1 T1 L1 Act 1", isHoliday: false, isCba: false, focus: "Finding GCF & LCM structures", onLevel: "Activity 1: Decomposing values to optimize numerical associations.", honors: "Incorporate algebraic application models into common multiples." },
+                { date: "Sept 16", label: "M1 T1 L1 Practice", isHoliday: false, isCba: false, focus: "Skills Practice Wrap", onLevel: "Completing Lesson 1 Skills Practice assignments.", honors: "Extension activities parsing complex prime factors." },
+                { date: "Sept 17", label: "Mathia Day", isHoliday: false, isCba: false, focus: "Mathia Workspace Setup", onLevel: "Software Tracking: Factors and Multiples module initialization.", honors: "Advanced Mathia workspace scaling paths." },
+                { date: "Sept 18", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Weekly Review & Target Sync", onLevel: "Formative evaluation of factoring metrics.", honors: "Accelerated review; intro to algebraic variables." },
+                { date: "Sept 21", label: "Distributive Mathia", isHoliday: false, isCba: false, focus: "Mathia Software Run", onLevel: "Exploring the distributive property with numeric expressions.", honors: "Mathia tracking module target completion." },
+                { date: "Sept 22", label: "Distributive Mastery", isHoliday: false, isCba: false, focus: "Prime Factoring Execution", onLevel: "Mastery Lesson: Prime Factorization and distributive layouts.", honors: "Factoring variable expressions via greatest common factors." },
+                { date: "Sept 23", label: "M1 T2 L1 Intro", isHoliday: false, isCba: false, focus: "Fraction Operations", onLevel: "M1 T2 Lesson 1: Reviewing fraction algorithms.", honors: "Accelerated execution of rational operations." },
+                { date: "Sept 24", label: "M1 T2 L1 Act 1", isHoliday: false, isCba: false, focus: "Rational Modeling", onLevel: "Lesson 1 Activity 1: Modeling fraction division.", honors: "Connecting fraction division rules directly to variable expressions." },
+                { date: "Sept 25", label: "M1 T2 L1 Wrap", isHoliday: false, isCba: false, focus: "Lesson 1 Evaluation", onLevel: "Talk the Talk: Summarizing the division of fractions.", honors: "Peer review of structural reasoning parameters." }
+            ],
+            october: [
+                { date: "Oct 12", label: "Staff Holiday", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Oct 13", label: "M1 T4 L3 Decomp", isHoliday: false, isCba: false, focus: "TEKS 6.8D Polygon Decomposing", onLevel: "Lesson 3 Activities 1 & 2: Breaking polygons down into neat rectangles/triangles.", honors: "Advanced irregular polygonal structures." },
+                { date: "Oct 14", label: "M1 T4 L3 Wrap", isHoliday: false, isCba: false, focus: "Formula Consolidation", onLevel: "Lesson 3 Talk the Talk: Solidifying area structures.", honors: "Complex geometric proofs of area transformations." },
+                { date: "Oct 15", label: "Mathia Station", isHoliday: false, isCba: false, focus: "Developing Area Modules", onLevel: "Mathia sessions focusing on basic area formulas.", honors: "Accelerated tracking inside software modules." },
+                { date: "Oct 16", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Formative Assessment Check", onLevel: "Targeted support for area calculation tracking.", honors: "Extension activities tracing perimeter constraints." },
+                { date: "Oct 19", label: "M1 T4 L4 Comp Area", isHoliday: false, isCba: false, focus: "TEKS 6.8D Application", onLevel: "Lesson 4 Activities 1 & 2: Real-world composite area analysis.", honors: "Multi-layered scenario parsing (nested figures)." },
+                { date: "Oct 20", label: "M1 T4 L4 Part 2", isHoliday: false, isCba: false, focus: "Deconstruction Tracks", onLevel: "Lesson 4 Activities 3 & 4: Practice decomposing missing boundaries.", honors: "Composite systems with fractional/decimal units." },
+                { date: "Oct 21", label: "M1 T4 L4 Finish", isHoliday: false, isCba: false, focus: "Review Synthesis", onLevel: "Lesson 4 Activities 5 & 6: Concluding base geometry modules.", honors: "Student-led tracking models for area parsing." },
+                { date: "Oct 22", label: "CBA Review Day", isHoliday: false, isCba: false, focus: "Exam Preparation", onLevel: "Comprehensive review of shapes, solids, and decimals.", honors: "Advanced review parameters targeting 7th preparation vectors." },
+                { date: "Oct 23", label: "CBA #2 Test", isHoliday: false, isCba: true, focus: "CBA #2 Evaluation Window", onLevel: "CBA #2 Assessment execution (Shapes, Solids, & Decimals Blueprint).", honors: "CBA #2 Complete Track Evaluation Block." }
+            ],
+            december: [
+                { date: "Dec 14", label: "7th Geometry Intro", isHoliday: false, isCba: false, focus: "Circles Exploration (7.5B/7.9B)", onLevel: "Exploring radius, diameter, and fundamental pi boundaries.", honors: "Module 5 Topic 1 Lesson 1: Investigating Circles using Mathia assets." },
+                { date: "Dec 15", label: "M5 T1 L1 Part 2", isHoliday: false, isCba: false, focus: "Circumference Frameworks", onLevel: "Analyzing linear perimeter traits of circles.", honors: "Connecting circle circumference directly to ratio tracking constants." },
+                { date: "Dec 16", label: "M5 T1 L2 Intro", isHoliday: false, isCba: false, focus: "Area of Circles", onLevel: "Transitioning perimeter metrics to internal square units.", honors: "Module 5 Topic 1 Lesson 2: Developing Area Formulas for Circles." },
+                { date: "Dec 17", label: "M5 T1 L2 Deep Dive", isHoliday: false, isCba: false, focus: "Circle Area Calculations", onLevel: "Calculating circle areas with varying radius frameworks.", honors: "Lesson 2 Activity 3 & Talk the Talk: Circle metrics optimization." },
+                { date: "Dec 18", label: "Winter Transition", isHoliday: false, isCba: false, focus: "Quarter Wrap Up", onLevel: "Conceptual cross-review of geometry modules.", honors: "High-level algebraic parsing of circle formulas." },
+                { date: "Dec 21", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Dec 22", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Dec 23", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Dec 24", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Dec 25", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" }
+            ],
+            january: [
+                { date: "Jan 1", label: "Winter Break", isHoliday: true, isCba: false, focus: "No School", onLevel: "N/A", honors: "N/A" },
+                { date: "Jan 4", label: "Staff Development", isHoliday: true, isCba: false, focus: "No School for Students", onLevel: "N/A", honors: "N/A" },
+                { date: "Jan 5", label: "M5 T1 L3 Launch", isHoliday: false, isCba: false, focus: "7th Grade TEKS 7.9C Launch", onLevel: "Analyzing curved area representations.", honors: "Module 5 Topic 1 Lesson 3: Advanced Composite Area (Semicircles & rounded parameters)." },
+                { date: "Jan 6", label: "M5 T1 L3 Deep Dive", isHoliday: false, isCba: false, focus: "TEKS 7.9C Complex Layouts", onLevel: "Calculating standard polygonal subsets.", honors: "Lesson 3 Day 2: Computing full area of figures containing combined standard and curved frames." },
+                { date: "Jan 7", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Mid-Week Formative Review", onLevel: "Reviewing basic irregular forms.", honors: "Troubleshooting composite calculation tracking errors." },
+                { date: "Jan 8", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Peer Review Workshop", onLevel: "Geometry tracking practices.", honors: "Deconstructing overlapping geometric areas." },
+                { date: "Jan 11", label: "Mathia Station", isHoliday: false, isCba: false, focus: "Compound Systems Work", onLevel: "General skill reinforcement tracks.", honors: "Mathia Software Session explicitly locked to 7th Grade compound system modules." },
+                { date: "Jan 12", label: "Unit Integration", isHoliday: false, isCba: false, focus: "Geometry Wrap Up", onLevel: "Review of geometric modeling constraints.", honors: "Concluding advanced area tasks before shifting units." },
+                { date: "Jan 13", label: "Early Release", isHoliday: false, isCba: false, focus: "Review Synthesis Block", onLevel: "Formative exit ticket evaluations.", honors: "Honors acceleration benchmark check." },
+                { date: "Jan 14", label: "M2 T1 L1 Intro", isHoliday: false, isCba: false, focus: "Ratio Relationships", onLevel: "Module 2 Topic 1 Lesson 1: Understanding ratio tracking.", honors: "Establishing proportional constants." },
+                { date: "Jan 15", label: "M2 T1 L1 Deep Dive", isHoliday: false, isCba: false, focus: "Modeling Ratios", onLevel: "Lesson 1 Activities 1 & 2: Structural representations.", honors: "Connecting ratio models to fractional coordinate structures." }
+            ],
+            february: [
+                { date: "Feb 1", label: "M3 T1 L3 Work", isHoliday: false, isCba: false, focus: "The Coordinate Plane", onLevel: "Module 3 Topic 1 Lesson 3: Mapping points across 4 quadrants.", honors: "Graphing multi-point coordinate systems." },
+                { date: "Feb 2", label: "M3 T1 L4 Launch", isHoliday: false, isCba: false, focus: "Coordinate Extensions", onLevel: "Lesson 4: Finding distances on the coordinate grid.", honors: "Advanced geometric area calculation on coordinate maps." },
+                { date: "Feb 3", label: "Mathia Station", isHoliday: false, isCba: false, focus: "Software Coordinate Tracking", onLevel: "Mathia modules for coordinate configurations.", honors: "Mastery track completion thresholds." },
+                { date: "Feb 4", label: "CBA Review Day", isHoliday: false, isCba: false, focus: "Exam Prep Block", onLevel: "Reviewing conversions and coordinate quadrants.", honors: "Macro analysis of signed systems." },
+                { date: "Feb 5", label: "CBA #4 Test", isHoliday: false, isCba: true, focus: "CBA #4 Evaluation Window", onLevel: "CBA #4 Assessment: Unit Rates, Conversions, and Signed Numbers.", honors: "CBA #4 Complete Tracker Verification." },
+                { date: "Feb 6", label: "M3 T2 L1 Intro", isHoliday: false, isCba: false, focus: "Integer Operations (6.3C)", onLevel: "Module 3 Topic 2 Lesson 1: Introduction to Integer Operations.", honors: "Establishing fundamental signed transformation systems." },
+                { date: "Feb 9", label: "M3 T2 L1 Act 1", isHoliday: false, isCba: false, focus: "Modeling Addition", onLevel: "Lesson 1 Activities 1 & 2: Two-color counter tracking.", honors: "Vector-based spatial addition modeling." },
+                { date: "Feb 10", label: "M3 T2 L2 Launch", isHoliday: false, isCba: false, focus: "Modeling Subtraction", onLevel: "Lesson 2 Activity 1: Adding the additive inverse.", honors: "Abstract algebraic representation of zero-pairs." },
+                { date: "Feb 11", label: "M3 T2 L2 Act 2", isHoliday: false, isCba: false, focus: "Number Line Vectors", onLevel: "Lesson 2 Activity 2 & Talk the Talk: Number line subtraction tracking.", honors: "Mapping signed spatial vectors across scales." },
+                { date: "Feb 12", label: "Mathia Day", isHoliday: false, isCba: false, focus: "Operating with Integers", onLevel: "Mathia processing drills for quick signed addition/subtraction.", honors: "Advanced software tracks on signed arithmetic configurations." },
+                { date: "Feb 13", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Mid-Unit Pulse Check", onLevel: "Formative tracking check for integer addition/subtraction.", honors: "Integer properties expansion loops." },
+                { date: "Feb 16", label: "M3 T2 L3 Multiplication", isHoliday: false, isCba: false, focus: "Integer Multiplication", onLevel: "Lesson 3 Activities 1 & 2: Modeling signed products.", honors: "Proving product sign transformations using matrices." },
+                { date: "Feb 17", label: "M3 T2 L3 Division", isHoliday: false, isCba: false, focus: "Integer Division", onLevel: "Lesson 3 Activity 4: Exploring signed quotients.", honors: "Developing division constraints in rational tracking." },
+                { date: "Feb 18", label: "M3 T2 L4 Mixed Math", isHoliday: false, isCba: false, focus: "Order of Operations", onLevel: "Lesson 4 Activity 1 & 3: Order of operations with integers.", honors: "Complex expressions with multiple exponents and fractions." },
+                { date: "Feb 19", label: "Mathia Session", isHoliday: false, isCba: false, focus: "Signed Products Training", onLevel: "Mathia software session: Integer Products/Quotients algorithms.", honors: "Mastery metrics tracking verification." },
+                { date: "Feb 20", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Problem Solving Lab", onLevel: "Real-world context tracking with negative values.", honors: "Multi-step integer variable tracking tasks." },
+                { date: "Feb 23", label: "M3 T2 L5 Algorithm", isHoliday: false, isCba: false, focus: "Consolidating Rules", onLevel: "Lesson 5 Getting Started & Activity 1: Standard algorithms check.", honors: "Structural validation of standard signed math paths." },
+                { date: "Feb 24", label: "M3 T2 L5 Wrap", isHoliday: false, isCba: false, focus: "Topic 2 Summary", onLevel: "Lesson 5 Activities 2 & 3: Final algorithm checks.", honors: "Talk the Talk: Peer structural code evaluations." },
+                { date: "Feb 25", label: "CBA Review Day", isHoliday: false, isCba: false, focus: "Exam Preparation", onLevel: "Comprehensive review of integer arithmetic.", honors: "Macro evaluation parameters check." },
+                { date: "Feb 26", label: "CBA #5 Test", isHoliday: false, isCba: true, focus: "CBA #5 Evaluation Window", onLevel: "CBA #5 Assessment execution (Operating with Integers Blueprint).", honors: "CBA #5 Complete Track Evaluation Block." }
+            ],
+            march: [
+                { date: "Mar 1", label: "M4 T3 L1 Scenario", isHoliday: false, isCba: false, focus: "Multiple Reps Intro", onLevel: "Module 4 Topic 3 Lesson 1 Activities 2 & 5: Verbal scenarios into equations.", honors: "Modeling complex non-proportional initial values." },
+                { date: "Mar 2", label: "M4 T3 L2 Variables", isHoliday: false, isCba: false, focus: "TEKS 6.6A Independent/Dependent", onLevel: "Lesson 2 Getting Started & Activity 1: Identifying structural inputs/outputs.", honors: "Defining structural variable domain and range properties." },
+                { date: "Mar 3", label: "M4 T3 L2 Wrap", isHoliday: false, isCba: false, focus: "Variable Mapping", onLevel: "Lesson 2 Talk the Talk: Solidifying variable functions.", honors: "Mapping independent constraints in real-world engineering contexts." },
+                { date: "Mar 4", label: "Mathia Station", isHoliday: false, isCba: false, focus: "Modeling Scenarios", onLevel: "Mathia tasks: Modeling scenarios with simple equations.", honors: "Advanced functional model scaling variables." },
+                { date: "Mar 5", label: "Instructional Flex", isHoliday: false, isCba: false, focus: "Formative Check Window", onLevel: "Checking tracking on independent/dependent tables.", honors: "Extension check: Tracking variables across systems." },
+                { date: "Mar 8", label: "M4 T3 L3 Tables", isHoliday: false, isCba: false, focus: "TEKS 6.6B Table Structures", onLevel: "Lesson 3 Activities 1 & 2: Building coordinate data sets from rules.", honors: "Differentiating additive ($y=x+b$) vs multiplicative ($y=kx$) fields." },
+                { date: "Mar 9", label: "M4 T3 L3 Graphs", isHoliday: false, isCba: false, focus: "TEKS 6.6C Graphing Rules", onLevel: "Lesson 3 Activity 3 & Talk the Talk: Transferring tables to grid plots.", honors: "Graphing multi-quadrant quantitative systems." },
+                { date: "Mar 10", label: "Math Mock Day", isHoliday: false, isCba: false, focus: "Mock Simulation Window", onLevel: "Campus-wide math evaluation simulation run.", honors: "Accelerated benchmark performance tracking evaluation." },
+                { date: "Mar 11", label: "M4 T3 L4 Plots", isHoliday: false, isCba: false, focus: "Continuous Graphing", onLevel: "Lesson 4 Activity 1: Plotting coordinate lines systematically.", honors: "Analyzing continuous vs discrete tracking domains." },
+                { date: "Mar 12", label: "M4 T3 L5 Finish", isHoliday: false, isCba: false, focus: "Final Representation Synthesis", onLevel: "Lesson 5 Activity 6: Integrating all 4 tracking systems.", honors: "Translating full systems (Rule to Table to Graph to Equation)." },
+                { date: "Mar 15", label: "Mathia Day", isHoliday: false, isCba: false, focus: "Writing Expressions", onLevel: "Mathia run: Writing expressions from scenarios, tables, or graphs.", honors: "Mastery tracking threshold checks." },
+                { date: "Mar 16", label: "CBA Review Day", isHoliday: false, isCba: false, focus: "Exam Preparation", onLevel: "Comprehensive structural alignment checks.", honors: "System overview checks." },
+                { date: "Mar 17", label: "CBA #7 Test", isHoliday: false, isCba: true, focus: "CBA #7 Evaluation Window", onLevel: "CBA #7 Assessment execution (Graphing Quantitative Relationships Blueprint).", honors: "CBA #7 Final Track Master Review." }
+            ]
+        };
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.dashboard-view').forEach(view => view.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- MOUNT AND RENDER THE SYSTEM CALENDAR ---
+        function loadMonth(monthKey) {
+            document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            document.getElementById('current-month-title').innerText = monthKey.toUpperCase() + " Pacing Schedule";
+
+            const gridContainer = document.getElementById('days-grid-container');
+            gridContainer.innerHTML = ''; 
+
+            const dayBlocks = masterCalendar[monthKey];
+
+            dayBlocks.forEach((dayData) => {
+                const card = document.createElement('div');
+                
+                let cardClass = 'day-card';
+                if (dayData.isHoliday) cardClass += ' holiday';
+                if (dayData.isCba) cardClass += ' cba-day';
+                
+                card.className = cardClass;
+                
+                if (!dayData.isHoliday) {
+                    card.onclick = () => showDetails(dayData);
+                }
+                
+                card.innerHTML = `
+                    <div class="day-num">${dayData.date.split(' ')[1]}</div>
+                    <div class="day-label">${dayData.label}</div>
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            // Auto-load the inspector with the first active instructional day
+            if(dayBlocks.length > 0) {
+                const firstActive = dayBlocks.find(d => !d.isHoliday) || dayBlocks[0];
+                showDetails(firstActive);
+            }
+        }
+
+        // --- UPDATE DAY INSPECTOR PANEL ---
+        function showDetails(dayData) {
+            const sidebar = document.getElementById('inspector-content');
+            if (dayData.isHoliday) {
+                sidebar.innerHTML = `
+                    <div class="detail-pane" style="border-left: 5px solid #e5e5e5">
+                        <div class="pane-title">📅 Academic Calendar Break</div>
+                        <p style="margin:4px 0; font-weight:bold; font-size:1.1rem;">${dayData.date}</p>
+                        <p style="margin:4px 0; font-size:0.9rem; color:#555;">${dayData.focus}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            sidebar.innerHTML = `
+                <div class="detail-pane" style="border-left: 5px solid var(--accent-blue)">
+                    <div class="pane-title">📅 Core Target Date</div>
+                    <p style="margin:4px 0; font-weight:bold; font-size:1.1rem;">${dayData.date}</p>
+                    <p style="margin:4px 0; font-size:0.9rem; color:#555;"><strong>Objective:</strong> ${dayData.focus}</p>
+                </div>
+                <div class="detail-pane" style="border-left: 5px solid var(--mint-green)">
+                    <div class="pane-title"><span class="badge" style="background: var(--mint-green)">On-Level Track</span></div>
+                    <p style="margin:4px 0; font-size:0.9rem;">${dayData.onLevel}</p>
+                </div>
+                <div class="detail-pane" style="border-left: 5px solid var(--primary-pop)">
+                    <div class="pane-title"><span class="badge" style="background: var(--primary-pop)">Honors Path Extension</span></div>
+                    <p style="margin:4px 0; font-size:0.9rem;">${dayData.honors}</p>
+                </div>
+            `;
+        }
+
+        // Initialize App on Window Open
+        window.onload = function() {
+            loadMonth('september');
+        };
+    </script>
+</body>
+</html>
