@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6th Grade Math Interactive YAG</title>
+    <style>
+        /* CSS: Reskinned to a Dark Mode / Tech Aesthetic */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212; /* Dark/Black Background */
+            margin: 0;
+            padding: 20px;
+            color: #e0e0e0; /* Light text for readability */
+        }
+        header {
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #00ff66; /* Vibrant Neon Green */
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            box-shadow: 0 4px 10px rgba(0, 255, 102, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+        header p {
+            margin: 5px 0 0 0;
+            color: #ffcc00; /* Yellow Subtitle */
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        .filter-section {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid #00ff66; /* Green Border */
+        }
+        label {
+            font-size: 16px;
+            color: #ffcc00; /* Yellow Text */
+        }
+        select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #00ff66;
+            background-color: #121212;
+            color: #00ff66;
+            cursor: pointer;
+            outline: none;
+            font-family: inherit;
+        }
+        select:focus {
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+        }
+        .calendar-card {
+            background: #1e1e1e; /* Dark Gray Cards */
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            border-left: 6px solid #00ff66; /* Neon Green Left Border */
+            transition: transform 0.2s;
+        }
+        .calendar-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 102, 0.15);
+        }
+        .calendar-card h3 {
+            margin-top: 0;
+            color: #00ff66; /* Neon Green Heading */
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .date-row {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .date-badge {
+            display: inline-block;
+            background-color: #333;
+            color: #00ff66; /* Green Text on Dark Badge */
+            border: 1px solid #00ff66;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-right: 10px;
+        }
+        .honors-badge {
+            display: inline-block;
+            background-color: #00ff66;
+            color: #121212; /* Inverted for Honors emphasis */
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-right: 10px;
+        }
+        .assessment-note {
+            background-color: #2a2510; /* Dark Yellow Tint */
+            border: 1px dashed #ffcc00; /* Yellow Dash */
+            color: #ffcc00; /* Alert Yellow Text */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>6th Grade Math Pacing & YAG</h1>
+        <p>[ System Status: Accelerated 7th Honors Track Connected ]</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="filter-section">
+            <label for="topicFilter"><strong>Execute Query (Filter):</strong> </label>
+            <select id="topicFilter" onchange="filterCalendar()">
+                <option value="all">Show Full Year Calendar</option>
+                <option value="distributive">Distributive Property (Sept)</option>
+                <option value="composite">Composite Area (6th Base & 7th Honors Extension)</option>
+                <option value="integers">Operating with Integers (Feb)</option>
+                <option value="representations">Multiple Representations (March)</option>
+            </select>
+        </div>
+
+        <div id="calendarDisplay">
+
+            <div class="calendar-card" data-topic="distributive">
+                <h3>September 2026: Expression Fundamentals</h3>
+                <div class="date-row">
+                    <span class="date-badge">Sept 21</span> 
+                    <strong>Station Day:</strong> MATHia CB — Exploring the distributive property with numeric expressions.
+                </div>
+                <div class="date-row">
+                    <span class="date-badge">Sept 22</span> 
+                    <strong>Mastery Lesson:</strong> Prime Factorization & Using the Distributive Property with Numeric Expressions.
+                </div>
+            </div>
+
+            <div class="calendar-card" data-topic="composite">
+                <h3>October 2026: Base Geometry (Decomposing Polygons)</h3>
+                <div class="date-row">
+                    <span class="date-badge">Oct 13</span> 
+                    <strong>Module 1 Topic 4 Lesson 3:</strong> Activities 1 & 2 + Talk the Talk (Decomposing irregular polygons into rectangles and triangles).
+                </div>
+                <div class="date-row">
+                    <span class="date-badge">Oct 19 - 21</span> 
+                    <strong>Module 1 Topic 4 Lesson 4:</strong> Multi-day sequence focusing heavily on composite area applications (Activities 1 through 6).
+                </div>
+                <div class="assessment-note">
+                    SYSTEM ALERT: Upcoming Milestone - CBA #2 (Shapes, Solids, & Decimals Blueprint)
+                </div>
+            </div>
+
+            <div class="calendar-card" data-topic="composite">
+                <h3>January 2027: 7th Grade Honors Accelerated Geometry Extension</h3>
+                <div class="date-row">
+                    <span class="honors-badge">Jan 5 - 6</span> 
+                    <strong>Module 5 Topic 1 Lesson 3 (TEKS 7.9C):</strong> Advanced Composite Area (Determining area of composite figures containing rectangles, triangles, and rounded edges/semicircles).
+                </div>
+                <div class="date-row">
+                    <span class="honors-badge">Jan 11</span> 
+                    <strong>Station Day Integration:</strong> MATHia software session explicitly locked to compound geometry modules.
+                </div>
+            </div>
+
+            <div class="calendar-card" data-topic="integers">
+                <h3>February 2027: Operating with Integers</h3>
+                <div class="date-row">
+                    <span class="date-badge">Feb 6 - 25</span> 
+                    <strong>Module 3 Topic 2:</strong> Integer operations, absolute values, products/quotients, and modeling rules on number lines.
+                </div>
+                <div class="assessment-note">
+                    SYSTEM ALERT: End of Unit - CBA #5 (Operating with Integers Blueprint) on February 26.
+                </div>
+            </div>
+
+            <div class="calendar-card" data-topic="representations">
+                <h3>March 2027: Graphing Quantitative Relationships</h3>
+                <div class="date-row">
+                    <span class="date-badge">Early March</span> 
+                    <strong>Module 4 Topic 3 Lessons 1 & 2:</strong> Modeling scenarios with equations, identifying independent vs. dependent variables from tables/graphs.
+                </div>
+                <div class="date-row">
+                    <span class="date-badge">Mid-March</span> 
+                    <strong>Module 4 Topic 3 Lessons 3 - 5:</strong> Connecting verbal descriptions, algebraic rules, tables, and full coordinate plane graphs.
+                </div>
+                <div class="assessment-note">
+                    SYSTEM ALERT: End of Unit - CBA #7 (Graphing Quantitative Relationships Blueprint).
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* JAVASCRIPT: Evaluates dropdown changes and hides/shows content dynamically */
+        function filterCalendar() {
+            var selectedValue = document.getElementById("topicFilter").value;
+            var cards = document.getElementsByClassName("calendar-card");
+
+            for (var i = 0; i < cards.length; i++) {
+                if (selectedValue === "all") {
+                    cards[i].style.display = "block";
+                } else if (cards[i].getAttribute("data-topic") === selectedValue) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
