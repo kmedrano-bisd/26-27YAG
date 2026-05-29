@@ -77,7 +77,7 @@
             display: block;
         }
 
-        /* --- VIEW 1: DAILY CALENDAR SYSTEM --- */
+        /* --- CALENDAR LAYOUT --- */
         .calendar-layout {
             max-width: 1300px;
             margin: 0 auto;
@@ -148,12 +148,27 @@
             justify-content: space-between;
             box-shadow: 2px 2px 0px #2b2d42;
             transition: all 0.1s ease;
+            position: relative;
         }
 
-        .day-card:hover {
+        .day-card:not(.empty):not(.blank-placeholder):hover {
             transform: translate(-1px, -1px);
             box-shadow: 4px 4px 0px #2b2d42;
             background: var(--mint-green);
+        }
+        
+        .day-card.blank-placeholder {
+            opacity: 0.6;
+            background: #f9f9f9;
+            box-shadow: 2px 2px 0px #ccc;
+            cursor: default;
+        }
+
+        .day-card.empty {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            cursor: default;
         }
 
         .day-card.active-selected {
@@ -162,7 +177,7 @@
 
         .day-card.holiday {
             background: #e5e5e5 !important;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .day-card.cba-day {
@@ -175,7 +190,7 @@
         }
 
         .day-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             line-height: 1.3;
             font-weight: bold;
             color: #2b2d42;
@@ -212,17 +227,7 @@
             margin-bottom: 8px;
         }
 
-        .badge {
-            background: var(--text-dark);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-left: 6px;
-        }
-
-        /* --- VIEW 2: MACRO TRACKER OVERVIEW --- */
+        /* --- VIEW 2: TEACHER NOTES --- */
         .macro-layout {
             max-width: 1200px;
             margin: 0 auto;
@@ -261,7 +266,7 @@
 
     <header>
         <h1>✿ Math Instructional Command Center ✿</h1>
-        <p>BISD Exact YAG Match • Mon-Fri Daily Timeline (August 2026 - May 2027)</p>
+        <p>BISD Exact YAG Match • 2026-2027 Calendar Mon-Fri Real Alignment</p>
     </header>
 
     <div class="tab-container">
@@ -295,7 +300,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Late August - Early Sept</strong></td>
+                        <td><strong>August</strong></td>
                         <td>SE: 6.7A, 6.7D, 6.4F, 6.3B, 6.3E</td>
                         <td>Heavy focus on distributive properties, GCF, and multiplying/dividing fractions. MATHia is introduced immediately.</td>
                     </tr>
@@ -317,7 +322,7 @@
                     <tr>
                         <td><strong>Late April / May (Bridge)</strong></td>
                         <td>SE: 7.4B, 7.5B, 7.8C, 7.9B, 7.9C</td>
-                        <td>"Since ALL 6th enters 7th Honors" - The YAG shifts immediately to 7th grade math standards, including calculating circle area ($A = \pi r^2$).</td>
+                        <td>"Since ALL 6th enters 7th Honors" - The YAG shifts immediately to 7th grade math standards.</td>
                     </tr>
                 </tbody>
             </table>
@@ -325,11 +330,14 @@
     </div>
 
     <script>
-        // --- EXACT YAG TIMELINE MATRIX (MONDAY TO FRIDAY) ---
+        // --- EXACT YAG TIMELINE MATRIX ---
+        // monthIndex follows JavaScript Date logic (January = 0, August = 7)
         const masterTimeline = {
-            august: { year: 2026, content: {
-                12: { label: "First Day", focus: "First Day of Classes", onLevel: "Policies and Procedures" },
-                13: { label: "Classroom Intro", focus: "Policies and Procedures", onLevel: "Policies and Procedures" },
+            august: { year: 2026, monthIndex: 7, content: {
+                10: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
+                11: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
+                12: { label: "Professional Dev", isHoliday: true, focus: "Teacher In-Service Day" },
+                13: { label: "First Day / Intro", focus: "Policies and Procedures", onLevel: "First day of classes! Review workspace layouts and course norms." },
                 14: { label: "Station Day", focus: "MATHia Review", onLevel: "Station Day / MATHia Optional for Review" },
                 17: { label: "Mod 1 Top 1 L1", focus: "Factors and Multiples", onLevel: "SE:6.7D Module 1 Topic 1 Lesson 1 - 'Getting Started. Activity 1' (SP p1 matches lesson)" },
                 18: { label: "Mod 1 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.7A Module 1 Topic 1 Lesson 2 - Warm up, 'Activity 1 and 2' (SP options available)" },
@@ -343,7 +351,7 @@
                 28: { label: "Station Day", focus: "MATHia Fraction Multiplying", onLevel: "Station Day / MATHia Day CB: Multiplying by Fractions to Increase or decrease quantities" },
                 31: { label: "Mod 1 Top 2 L4", focus: "Fraction Division", onLevel: "SE:6.2E, 6.3A, 6.3E Module 1 Topic 2 Lesson 4 - 'Getting Started, Activity 1, Activity 2' (Mathia CB: Representing Fraction Division)" }
             }},
-            september: { year: 2026, content: {
+            september: { year: 2026, monthIndex: 8, content: {
                 1: { label: "Mod 1 Top 2 L4", focus: "Fraction Division Algorithms", onLevel: "SE:6.2E, 6.3A, 6.3E Module 1 Topic 2 Lesson 4 - 'Activity 3' (Mathia CB. Developing the Fraction Division Algorithm)" },
                 2: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
                 3: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
@@ -367,7 +375,7 @@
                 29: { label: "Mod 2 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.4A, 6.4D Module 2 Topic 1 Lesson 1 - 'Activity 1 and 2'" },
                 30: { label: "Mod 2 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.4A, 6.4C Module 2 Topic 1 Lesson 1 - 'Activity 4 and 5. Talk the Talk'" }
             }},
-            october: { year: 2026, content: {
+            october: { year: 2026, monthIndex: 9, content: {
                 1: { label: "Mod 2 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.4B, 6.4C Module 2 Topic 1 Lesson 2 - 'Activity 1 and 2'" },
                 2: { label: "Station Day", focus: "MATHia Ratios", onLevel: "Station Day / MATHia CB: Understanding Ratio Relationships" },
                 5: { label: "Mod 2 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.4B, 6.4E, 6.5A Module 2 Topic 1 Lesson 3 - 'Activity 1. Talk the Talk'" },
@@ -391,7 +399,7 @@
                 29: { label: "Mod 2 Top 2 L3", focus: "Activity 1 and 2", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 1, 2'" },
                 30: { label: "Mod 2 Top 2 L3", focus: "Activity 3", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 3'" }
             }},
-            november: { year: 2026, content: {
+            november: { year: 2026, monthIndex: 10, content: {
                 2: { label: "Mod 2 Top 2 L3", focus: "Activity 4", onLevel: "SE:6.5B Module 2 Topic 2 Lesson 3 - 'Activity 4'" },
                 3: { label: "Station Day", focus: "MATHia FDP Review", onLevel: "Station Day / Mathia CB Fractions Decimal Percent Conversions/Review" },
                 4: { label: "CBA #3", isCba: true, focus: "Module 2 Topic 1&2", onLevel: "CBA #3: Ratios and Percents" },
@@ -414,7 +422,7 @@
                 27: { label: "Thanksgiving Break", isHoliday: true, focus: "Holiday Recess" },
                 30: { label: "Mod 3 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.2B Module 3 Topic 1 Lesson 2 - 'Activity 1 and 2'" }
             }},
-            december: { year: 2026, content: {
+            december: { year: 2026, monthIndex: 11, content: {
                 1: { label: "Mod 3 Top 1 L2", focus: "Talk the Talk", onLevel: "SE:6.2B Module 3 Topic 1 Lesson 2 - 'Activity 3. Talk the Talk'" },
                 2: { label: "Mod 3 Top 1 L3", focus: "Activity 1 and 2", onLevel: "SE:6.2A, 6.2C Module 3 Topic 1 Lesson 3 - 'Activity 1 and 2. Talk the Talk'" },
                 3: { label: "Station Day", focus: "MATHia Absolute Value", onLevel: "Station Day / MATHia CB: Using Absolute Value and Classifying Rational Numbers" },
@@ -439,7 +447,7 @@
                 30: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" },
                 31: { label: "Winter Break", isHoliday: true, focus: "Winter Recess" }
             }},
-            january: { year: 2027, content: {
+            january: { year: 2027, monthIndex: 0, content: {
                 1: { label: "Holiday", isHoliday: true, focus: "New Years" },
                 4: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
                 5: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
@@ -451,97 +459,109 @@
                 13: { label: "Mod 3 Top 2 L5", focus: "Talk the Talk", onLevel: "SE:6.3C, 6.3D Module 3 Topic 2 Lesson 5 - 'Activity 2 and 3. Talk the Talk'" },
                 14: { label: "CBA #5", isCba: true, focus: "Module 3 Topic 2", onLevel: "CBA #5: Operating with Integers" },
                 15: { label: "Holiday", isHoliday: true, focus: "School Break" },
-                18: { label: "Mod 4 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 1, and 2'" },
-                19: { label: "Mod 4 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 4 and 5'" },
-                20: { label: "Station Day", focus: "MATHia Exponents", onLevel: "Station Day / Mathia Writing and Evaluating Exponent Expressions" },
-                21: { label: "Mod 4 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 1 and 2'" },
-                22: { label: "Mod 4 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 3 and 4'" },
-                25: { label: "Mod 4 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.7B, 6.7C, 6.7D Module 4 Topic 1 Lesson 3 - 'Activity 1, 2 and 4, Talk the Talk'" },
-                26: { label: "Mod 4 Top 1 L4", focus: "Talk the Talk", onLevel: "SE:6.7C, 6.7D Module 4 Topic 1 Lesson 4 - 'Activity 1. Talk the Talk'" },
-                27: { label: "Station Day", focus: "MATHia Expressions", onLevel: "Station Day / Mathia Identifying Parts of Simple Algebraic Expressions" },
-                28: { label: "Mod 4 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 1, 2'" },
-                29: { label: "Mod 4 Top 2 L1", focus: "Activity 5", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 5'" }
+                18: { label: "Holiday", isHoliday: true, focus: "Martin Luther King Jr. Day" },
+                19: { label: "Mod 4 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 1, and 2'" },
+                20: { label: "Mod 4 Top 1 L1", focus: "Activity 4 and 5", onLevel: "SE:6.3D, 6.7A, 6.7B Module 4 Topic 1 Lesson 1 - 'Activity 4 and 5'" },
+                21: { label: "Station Day", focus: "MATHia Exponents", onLevel: "Station Day / Mathia Writing and Evaluating Exponent Expressions" },
+                22: { label: "Mod 4 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 1 and 2'" },
+                25: { label: "Mod 4 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.3D, 6.7D Module 4 Topic 1 Lesson 2 - 'Activity 3 and 4'" },
+                26: { label: "Mod 4 Top 1 L3", focus: "Talk the Talk", onLevel: "SE:6.7B, 6.7C, 6.7D Module 4 Topic 1 Lesson 3 - 'Activity 1, 2 and 4, Talk the Talk'" },
+                27: { label: "Mod 4 Top 1 L4", focus: "Talk the Talk", onLevel: "SE:6.7C, 6.7D Module 4 Topic 1 Lesson 4 - 'Activity 1. Talk the Talk'" },
+                28: { label: "Station Day", focus: "MATHia Expressions", onLevel: "Station Day / Mathia Identifying Parts of Simple Algebraic Expressions" },
+                29: { label: "Mod 4 Top 2 L1", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 1, 2'" }
             }},
-            february: { year: 2027, content: {
-                1: { label: "RLA MOCK", focus: "Testing Sim", onLevel: "RLA MOCK DAY" },
-                2: { label: "Mod 4 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.9A, 6.10A Module 4 Topic 2 Lesson 2 - 'Activity 1 and 2 include subtraction'" },
-                3: { label: "Mod 4 Top 2 L3", focus: "Activity 1, 2, and 4", onLevel: "SE:6.9A, 6.10A Module 4 Topic 2 Lesson 3 - 'Activity 1, 2, and 4 include division'" },
-                4: { label: "Mod 4 Top 2 L4", focus: "Activity 1 and 3", onLevel: "SE:6.8C, 6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 4 - 'Activity 1 and 3. Talk the Talk'" },
-                5: { label: "Mod 4 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Getting Started Activity 1'" },
-                8: { label: "Mod 4 Top 2 L5", focus: "Activity 2 and 3", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Activity 2 and 3'" },
-                9: { label: "Station Day", focus: "MATHia Equations", onLevel: "Station Day / Mathia Representing One-Step Equations OR Modeling One-Step Equations" },
-                10: { label: "CBA #6", isCba: true, focus: "Module 4 Topic 1&2", onLevel: "CBA #6: Expressions, Equations, Inequalities" },
-                11: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
+            february: { year: 2027, monthIndex: 1, content: {
+                1: { label: "Mod 4 Top 2 L1", focus: "Activity 5", onLevel: "SE:6.3D, 6.7D, 6.9A, 6.9B Module 4 Topic 2 Lesson 1 - 'Activity 5'" },
+                2: { label: "RLA MOCK", focus: "Testing Sim", onLevel: "RLA MOCK DAY" },
+                3: { label: "Mod 4 Top 2 L2", focus: "Activity 1 and 2", onLevel: "SE:6.3D, 6.9A, 6.10A Module 4 Topic 2 Lesson 2 - 'Activity 1 and 2 include subtraction'" },
+                4: { label: "Mod 4 Top 2 L3", focus: "Activity 1, 2, and 4", onLevel: "SE:6.9A, 6.10A Module 4 Topic 2 Lesson 3 - 'Activity 1, 2, and 4 include division'" },
+                5: { label: "Mod 4 Top 2 L4", focus: "Activity 1 and 3", onLevel: "SE:6.8C, 6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 4 - 'Activity 1 and 3. Talk the Talk'" },
+                8: { label: "Mod 4 Top 2 L5", focus: "Getting Started", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Getting Started Activity 1'" },
+                9: { label: "Mod 4 Top 2 L5", focus: "Activity 2 and 3", onLevel: "SE:6.9A, 6.9B, 6.9C, 6.10A Module 4 Topic 2 Lesson 5 - 'Activity 2 and 3'" },
+                10: { label: "Station Day", focus: "MATHia Equations", onLevel: "Station Day / Mathia Representing One-Step Equations OR Modeling One-Step Equations" },
+                11: { label: "CBA #6", isCba: true, focus: "Module 4 Topic 1&2", onLevel: "CBA #6: Expressions, Equations, Inequalities" },
                 12: { label: "Holiday", isHoliday: true, focus: "School Break" },
-                15: { label: "Telpas / Station", focus: "Testing & Review", onLevel: "Telpas / Station Day (optional)" },
+                15: { label: "Prof Dev", isHoliday: true, focus: "Professional Development" },
                 16: { label: "Telpas / Station", focus: "Testing & Review", onLevel: "Telpas / Station Day (optional)" },
-                17: { label: "Mod 4 Top 3 L1", focus: "Activity 2.5", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 1 - 'Activity 2.5' (Mathia Modeling Scenarios)" },
-                18: { label: "Mod 4 Top 3 L2", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 2 - 'Getting Started Activity 1 and Talk the Talk'" },
-                19: { label: "Mod 4 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 1 and 2'" },
-                22: { label: "Mod 4 Top 3 L3", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 3, Talk the Talk'" },
-                23: { label: "Mod 4 Top 3 L4", focus: "Activity 1", onLevel: "SE:6.5A, 6.6B, 6.6C Module 4 Topic 3 Lesson 4 - 'Activity 1'" },
-                24: { label: "Mod 4 Top 3 L5", focus: "Activity 6", onLevel: "SE:6.6A, 6.6C, 6.11A Module 4 Topic 3 Lesson 5 - 'Activity 6'" },
-                25: { label: "Station Day", focus: "MATHia Scenarios", onLevel: "Station Day / MATHia Writing an Expression from a Scenario, Table, or Graph" },
-                26: { label: "MATH MOCK", isCba: true, focus: "Testing Sim", onLevel: "MATH MOCK DAY" }
+                17: { label: "Telpas / Station", focus: "Testing & Review", onLevel: "Telpas / Station Day (optional)" },
+                18: { label: "Mod 4 Top 3 L1", focus: "Activity 2.5", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 1 - 'Activity 2.5' (Mathia Modeling Scenarios)" },
+                19: { label: "Mod 4 Top 3 L2", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 2 - 'Getting Started Activity 1 and Talk the Talk'" },
+                22: { label: "Mod 4 Top 3 L3", focus: "Activity 1 and 2", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 1 and 2'" },
+                23: { label: "Mod 4 Top 3 L3", focus: "Talk the Talk", onLevel: "SE:6.6A, 6.6B, 6.6C Module 4 Topic 3 Lesson 3 - 'Activity 3, Talk the Talk'" },
+                24: { label: "Mod 4 Top 3 L4", focus: "Activity 1", onLevel: "SE:6.5A, 6.6B, 6.6C Module 4 Topic 3 Lesson 4 - 'Activity 1'" },
+                25: { label: "Mod 4 Top 3 L5", focus: "Activity 6", onLevel: "SE:6.6A, 6.6C, 6.11A Module 4 Topic 3 Lesson 5 - 'Activity 6'" },
+                26: { label: "Station Day", focus: "MATHia Scenarios", onLevel: "Station Day / MATHia Writing an Expression from a Scenario, Table, or Graph" }
             }},
-            march: { year: 2027, content: {
-                1: { label: "CBA #7", isCba: true, focus: "Module 4 Topic 3", onLevel: "CBA #7: Graphing Quantitative Relationships" },
-                2: { label: "Mod 5 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 1 and 2'" },
-                3: { label: "Mod 5 Top 1 L1", focus: "Activity 3", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 3 and Skills Practice pg 4'" },
-                4: { label: "Mod 5 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 1 and 2'" },
-                5: { label: "Mod 5 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 3 and 4'" },
-                8: { label: "Station Day", focus: "MATHia Dot Plots", onLevel: "Station Day / MATHia Interpreting Dot Plots OR Exploring Histograms" },
-                9: { label: "Mod 5 Top 1 L3", focus: "Activity 1", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 1'" },
-                10: { label: "Mod 5 Top 1 L3", focus: "Activity 2 and 3", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 2 and 3. Talk the Talk'" },
-                11: { label: "Mod 5 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.12A, 6.12B, 6.12D, 6.13A Module 5 Topic 2 Lesson 2 - 'Getting Started, Activity 1'" },
-                12: { label: "Mod 5 Top 2 L1", focus: "Activity 1, 2, 3", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 1, 2 and 3'" },
+            march: { year: 2027, monthIndex: 2, content: {
+                1: { label: "MATH MOCK", isCba: true, focus: "Testing Sim", onLevel: "MATH MOCK DAY" },
+                2: { label: "CBA #7", isCba: true, focus: "Module 4 Topic 3", onLevel: "CBA #7: Graphing Quantitative Relationships" },
+                3: { label: "Mod 5 Top 1 L1", focus: "Activity 1 and 2", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 1 and 2'" },
+                4: { label: "Mod 5 Top 1 L1", focus: "Activity 3", onLevel: "SE:6.13B Module 5 Topic 1 Lesson 1 - 'Activity 3 and Skills Practice pg 4'" },
+                5: { label: "Mod 5 Top 1 L2", focus: "Activity 1 and 2", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 1 and 2'" },
+                8: { label: "Mod 5 Top 1 L2", focus: "Activity 3 and 4", onLevel: "SE:6.12A, 6.13A Module 5 Topic 1 Lesson 2 - 'Activity 3 and 4'" },
+                9: { label: "Station Day", focus: "MATHia Dot Plots", onLevel: "Station Day / MATHia Interpreting Dot Plots OR Exploring Histograms" },
+                10: { label: "Mod 5 Top 1 L3", focus: "Activity 1", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 1'" },
+                11: { label: "Mod 5 Top 1 L3", focus: "Activity 2 and 3", onLevel: "SE:6.12A, 6.12D, 6.13A Module 5 Topic 1 Lesson 3 - 'Activity 2 and 3. Talk the Talk'" },
+                12: { label: "Mod 5 Top 2 L2", focus: "Getting Started", onLevel: "SE:6.12A, 6.12B, 6.12D, 6.13A Module 5 Topic 2 Lesson 2 - 'Getting Started, Activity 1'" },
                 15: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
                 16: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
                 17: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
                 18: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
                 19: { label: "Spring Break", isHoliday: true, focus: "District Spring Recess" },
-                22: { label: "Mod 5 Top 2 L1", focus: "Activity 4", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 4'" },
-                23: { label: "Mod 5 Top 2 L3", focus: "Activity 3 and 5", onLevel: "SE:6.12D Module 5 Topic 2 Lesson 3 - 'Activity 3 and 5'" },
-                24: { label: "Station Day", focus: "MATHia Metrics", onLevel: "Station Day / MATHia Calculating Mean, Median, Mode, and Range" },
-                25: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                22: { label: "Mod 5 Top 2 L1", focus: "Activity 1, 2, 3", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 1, 2 and 3'" },
+                23: { label: "Mod 5 Top 2 L1", focus: "Activity 4", onLevel: "SE:6.12B, 6.12C Module 5 Topic 2 Lesson 1 - 'Activity 4'" },
+                24: { label: "Mod 5 Top 2 L3", focus: "Activity 3 and 5", onLevel: "SE:6.12D Module 5 Topic 2 Lesson 3 - 'Activity 3 and 5'" },
+                25: { label: "Station Day", focus: "MATHia Metrics", onLevel: "Station Day / MATHia Calculating Mean, Median, Mode, and Range" },
                 26: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
                 29: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
                 30: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
                 31: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" }
             }},
-            april: { year: 2027, content: {
+            april: { year: 2027, monthIndex: 3, content: {
                 1: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
                 2: { label: "Holiday", isHoliday: true, focus: "Good Friday" },
                 5: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
-                6: { label: "MATH STAAR", isCba: true, focus: "State Evaluation", onLevel: "Official MATH STAAR test" },
-                7: { label: "Mod 4 Top 4 L2", focus: "Lesson 2", onLevel: "SE: 6.14A, 6.14B Module 4 Topic 4 Lesson 2" },
-                8: { label: "Mod 4 Top 4 L3", focus: "Lesson 3", onLevel: "SE: 6.14C, 6.14E, 6.14F Module 4 Topic 4 Lesson 3" },
-                9: { label: "Mod 4 Top 4 L1", focus: "Activity 1 and 2", onLevel: "SE: 6.14A, 6.14D Module 4 Topic 4 Lesson 1 - 'Activity 1 and 2. Talk the Talk'" },
-                12: { label: "Station Day", focus: "Optional Skills", onLevel: "Station Day (option)" },
-                13: { label: "Mod 4 Top 4 L4", focus: "Talk the Talk", onLevel: "SE: 6.14H Module 4 Topic 4 Lesson 4 - 'Activity 3. Talk the Talk'" },
-                14: { label: "Mod 4 Top 4 L5", focus: "Talk the Talk", onLevel: "SE: 6.14G Module 4 Topic 4 Lesson 5 - 'Activity 1 and 3. Talk the Talk'" },
-                15: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
-                16: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
-                19: { label: "7th Honors Path", focus: "Transition Bridge", onLevel: "Since ALL 6th enters 7th Honors, pacing enters 7th standards." },
-                20: { label: "Mod 5 Top 1 L1 (7th)", focus: "Lesson 1", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1" },
-                21: { label: "Mod 5 Top 1 L1 (7th)", focus: "Circles", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1 (Mathia Investigating Circles)" },
-                22: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2" },
-                23: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2" },
-                26: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3" },
-                27: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3" },
-                28: { label: "Station Day", focus: "MATHia Area Formula", onLevel: "Station Day Mathia: Developing the Area Formula for Circles" },
-                29: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                30: { label: "Flex Day", focus: "Review", onLevel: "Flex day" }
+                6: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                7: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                8: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                9: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                12: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                13: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                14: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                15: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                16: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                19: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                20: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                21: { label: "STAAR REVIEW", focus: "Pacing Sync", onLevel: "STAAR REVIEW block" },
+                22: { label: "MATH STAAR", isCba: true, focus: "State Evaluation", onLevel: "Official MATH STAAR test" },
+                23: { label: "Mod 4 Top 4 L2", focus: "Lesson 2", onLevel: "SE: 6.14A, 6.14B Module 4 Topic 4 Lesson 2" },
+                26: { label: "Mod 4 Top 4 L3", focus: "Lesson 3", onLevel: "SE: 6.14C, 6.14E, 6.14F Module 4 Topic 4 Lesson 3" },
+                27: { label: "Mod 4 Top 4 L1", focus: "Activity 1 and 2", onLevel: "SE: 6.14A, 6.14D Module 4 Topic 4 Lesson 1 - 'Activity 1 and 2. Talk the Talk'" },
+                28: { label: "Station Day", focus: "Optional Skills", onLevel: "Station Day (option)" },
+                29: { label: "Mod 4 Top 4 L4", focus: "Talk the Talk", onLevel: "SE: 6.14H Module 4 Topic 4 Lesson 4 - 'Activity 3. Talk the Talk'" },
+                30: { label: "Mod 4 Top 4 L5", focus: "Talk the Talk", onLevel: "SE: 6.14G Module 4 Topic 4 Lesson 5 - 'Activity 1 and 3. Talk the Talk'" }
             }},
-            may: { year: 2027, content: {
-                3: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                4: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                5: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                6: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                7: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
-                10: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
-                11: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
-                12: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" }
+            may: { year: 2027, monthIndex: 4, content: {
+                3: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
+                4: { label: "MAP Testing", focus: "Diagnostics", onLevel: "MAP testing / Station Day (option)" },
+                5: { label: "7th Honors Path", focus: "Transition Bridge", onLevel: "Since ALL 6th enters 7th Honors, pacing enters 7th standards." },
+                6: { label: "Mod 5 Top 1 L1 (7th)", focus: "Lesson 1", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1" },
+                7: { label: "Mod 5 Top 1 L1 (7th)", focus: "Circles", onLevel: "7.5B, 7.8C, 7.9B Module 5 Topic 1 Lesson 1 (Mathia Investigating Circles)" },
+                10: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2" },
+                11: { label: "Mod 5 Top 1 L2 (7th)", focus: "Lesson 2", onLevel: "7.4B, 7.8C, 7.9B Module 5 Topic 1 Lesson 2" },
+                12: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3" },
+                13: { label: "Mod 5 Top 1 L3 (7th)", focus: "Lesson 3", onLevel: "7.9B, 7.9C Module 5 Topic 1 Lesson 3" },
+                14: { label: "Station Day", focus: "MATHia Area Formula", onLevel: "Station Day Mathia: Developing the Area Formula for Circles" },
+                17: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                18: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                19: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                20: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                21: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                24: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                25: { label: "Flex Day", focus: "Review", onLevel: "Flex day" },
+                26: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
+                27: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" },
+                28: { label: "EARLY RELEASE", isHoliday: true, focus: "End of Year Pacing", onLevel: "Early Release Day" }
             }}
         };
 
@@ -554,7 +574,7 @@
             event.target.classList.add('active');
         }
 
-        // --- CALENDAR RENDERING ENGINE ---
+        // --- TRUE CALENDAR RENDERING ENGINE ---
         function loadMonth(monthKey) {
             document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
             if(event && event.target) {
@@ -562,65 +582,99 @@
             }
             
             const monthConfig = masterTimeline[monthKey];
-            document.getElementById('current-month-title').innerText = `${monthKey.toUpperCase()} ${monthConfig.year}`;
+            const year = monthConfig.year;
+            const monthIdx = monthConfig.monthIndex;
+
+            document.getElementById('current-month-title').innerText = `${monthKey.toUpperCase()} ${year}`;
 
             const gridContainer = document.getElementById('days-grid-container');
-            gridContainer.innerHTML = ''; 
+            let gridHTML = ""; 
 
-            const contentData = monthConfig.content;
+            // Calculate total days in the month
+            const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
+            let hasStartedDrawing = false;
 
-            for (let dayNum = 1; dayNum <= 31; dayNum++) {
-                if (!contentData[dayNum]) continue;
+            // Iterate through every single actual date in the given month
+            for (let dayNum = 1; dayNum <= daysInMonth; dayNum++) {
+                const dateObj = new Date(year, monthIdx, dayNum);
+                const dayOfWeek = dateObj.getDay();
 
-                const dayData = contentData[dayNum];
-                const card = document.createElement('div');
+                // Skip Saturday (6) and Sunday (0)
+                if (dayOfWeek === 0 || dayOfWeek === 6) continue;
+
+                // Fill blank spaces at the start of the month to align Mon-Fri columns
+                if (!hasStartedDrawing) {
+                    // dayOfWeek is 1 for Mon, 2 for Tue, 3 for Wed, 4 for Thu, 5 for Fri
+                    for (let i = 1; i < dayOfWeek; i++) {
+                        gridHTML += `<div class="day-card empty"></div>`;
+                    }
+                    hasStartedDrawing = true;
+                }
+
+                const dayData = monthConfig.content[dayNum];
                 
-                let cardClass = 'day-card';
-                if (dayData.isHoliday) cardClass += ' holiday';
-                if (dayData.isCba) cardClass += ' cba-day';
-                card.className = cardClass;
-                card.id = `card-${monthKey}-${dayNum}`;
-                
-                card.innerHTML = `
-                    <div class="day-num">${dayNum}</div>
-                    <div class="day-label">${dayData.label}</div>
-                `;
-                
-                const drawer = document.createElement('div');
-                drawer.className = 'expansion-drawer';
-                drawer.id = `drawer-${monthKey}-${dayNum}`;
-                
-                if (dayData.isHoliday) {
-                    drawer.innerHTML = `
-                        <h3 style="margin-top:0; color:#2b2d42;">⚡ Milestone / Break: ${dayData.label}</h3>
-                        <p style="margin:4px 0;"><strong>Activity:</strong> ${dayData.focus}</p>
+                if (dayData) {
+                    // We have lesson data for this day
+                    let cardClass = 'day-card';
+                    if (dayData.isHoliday) cardClass += ' holiday';
+                    if (dayData.isCba) cardClass += ' cba-day';
+                    
+                    gridHTML += `
+                        <div class="${cardClass}" id="card-${monthKey}-${dayNum}" onclick="toggleInlineDrawer('${monthKey}', ${dayNum})">
+                            <div class="day-num">${dayNum}</div>
+                            <div class="day-label">${dayData.label}</div>
+                        </div>
                     `;
+
+                    // Generate the hidden drawer for this day
+                    let drawerHTML = `<div class="expansion-drawer" id="drawer-${monthKey}-${dayNum}">`;
+                    
+                    if (dayData.isHoliday) {
+                        drawerHTML += `
+                            <h3 style="margin-top:0; color:#2b2d42;">⚡ Milestone / Break: ${dayData.label}</h3>
+                            <p style="margin:4px 0;"><strong>Activity:</strong> ${dayData.focus}</p>
+                            ${dayData.onLevel ? `<p style="margin:4px 0;"><strong>Details:</strong> ${dayData.onLevel}</p>` : ''}
+                        `;
+                    } else {
+                        drawerHTML += `
+                            <h3 style="margin-top:0; color:var(--text-dark);">🎯 Lesson Focus: ${dayData.focus}</h3>
+                            <div class="track-panel">
+                                <div class="panel-title">Exact YAG Blueprint <span class="badge">TEKS Focus</span></div>
+                                <p style="margin:4px 0; font-size:0.9rem; line-height:1.4;">${dayData.onLevel}</p>
+                            </div>
+                        `;
+                    }
+                    drawerHTML += `</div>`;
+                    gridHTML += drawerHTML;
+
                 } else {
-                    drawer.innerHTML = `
-                        <h3 style="margin-top:0; color:var(--text-dark);">🎯 Lesson Focus: ${dayData.focus}</h3>
-                        <div class="track-panel">
-                            <div class="panel-title">Exact YAG Blueprint <span class="badge">TEKS Focus</span></div>
-                            <p style="margin:4px 0; font-size:0.9rem; line-height:1.4;">${dayData.onLevel}</p>
+                    // We don't have YAG data for this weekday, generate a placeholder to keep calendar aligned
+                    gridHTML += `
+                        <div class="day-card blank-placeholder">
+                            <div class="day-num">${dayNum}</div>
+                            <div class="day-label" style="color:#777;">Flex / Open</div>
                         </div>
                     `;
                 }
-                
-                card.onclick = () => toggleInlineDrawer(monthKey, dayNum);
-                
-                gridContainer.appendChild(card);
-                gridContainer.appendChild(drawer);
             }
+
+            gridContainer.innerHTML = gridHTML;
         }
 
         // --- INLINE DRAWER MANAGER ---
         function toggleInlineDrawer(monthKey, dayNum) {
             const targetDrawer = document.getElementById(`drawer-${monthKey}-${dayNum}`);
             const targetCard = document.getElementById(`card-${monthKey}-${dayNum}`);
+            
+            if (!targetDrawer) return; // Ignore clicks on blank placeholders
+            
             const isCurrentlyOpen = targetDrawer.style.display === 'block';
             
+            // Close all
             document.querySelectorAll('.expansion-drawer').forEach(d => d.style.display = 'none');
             document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active-selected'));
             
+            // Open clicked
             if (!isCurrentlyOpen) {
                 targetDrawer.style.display = 'block';
                 targetCard.classList.add('active-selected');
