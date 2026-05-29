@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6th Grade Math Interactive YAG</title>
+    <style>
+        /* CSS: This styles how your calendar looks */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            background-color: #004d40;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        .filter-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .calendar-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #004d40;
+        }
+        .date-badge {
+            font-weight: bold;
+            color: #e65100;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>6th Grade Math Pacing & YAG</h1>
+        <p>Interactive Planning Dashboard</p>
+    </header>
+
+    <div class="container">
+        <div class="filter-section">
+            <label for="topicFilter"><strong>Jump to Concept:</strong> </label>
+            <select id="topicFilter" onchange="filterCalendar()">
+                <option value="all">Show All Months</option>
+                <option value="integers">Integers & Order of Operations</option>
+                <option value="distributive">Distributive Property</option>
+                <option value="composite">Composite Area (6th & 7th Honors)</option>
+                <option value="representations">Multiple Representations</option>
+            </select>
+        </div>
+
+        <div id="calendarDisplay">
+            <div class="calendar-card" data-topic="distributive">
+                <h3>September 2026: Expression Fundamentals</h3>
+                <p><span class="date-badge">Sept 21:</span> Station Day MATHia — Exploring the distributive property with numeric expressions.</p>
+                <p><span class="date-badge">Sept 22:</span> Mastery Lesson — Prime Factorization & Using the Distributive Property.</p>
+            </div>
+
+            <div class="calendar-card" data-topic="composite">
+                <h3>October 2026: Compound Geometry (6th Grade Base)</h3>
+                <p><span class="date-badge">Oct 13:</span> Module 1 Topic 4 Lesson 3 — Decomposing irregular polygons into rectangles/triangles.</p>
+                <p><span class="date-badge">Oct 19 - 21:</span> Module 1 Topic 4 Lesson 4 — Multi-day composite area application (Activities 1-6).</p>
+            </div>
+
+            <div class="calendar-card" data-topic="integers">
+                <h3>February 2027: Operating with Integers</h3>
+                <p><span class="date-badge">Feb 6 - 25:</span> Module 3 Topic 2 — Integer rules, number line representations, algorithms, products & quotients.</p>
+                <p><span class="date-badge">Feb 26:</span> <strong>CBA #5 Assessment</strong> (Operating with Integers).</p>
+            </div>
+
+            <div class="calendar-card" data-topic="representations">
+                <h3>March 2027: Multiple Representations</h3>
+                <p><span class="date-badge">Early-to-Mid March:</span> Module 4 Topic 3 — Graphing Quantitative Relationships (Tables, Graphs, Verbal Scenarios, and Equations).</p>
+                <p><span class="date-badge">Mid-March:</span> <strong>CBA #7 Assessment</strong> (Graphing Quantitative Relationships).</p>
+            </div>
+
+            <div class="calendar-card" data-topic="composite">
+                <h3>January 2027: 7th Grade Honors Accelerated Extension</h3>
+                <p><span class="date-badge">Jan 5 - 6:</span> Module 5 Topic 1 Lesson 3 — Advanced Composite Area (Semicircles, circles, and curves for 7th Honors track).</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JAVASCRIPT: This controls the interactivity of your filter dropdown
+        function filterCalendar() {
+            var selectedValue = document.getElementById("topicFilter").value;
+            var cards = document.getElementsByClassName("calendar-card");
+
+            for (var i = 0; i < cards.length; i++) {
+                if (selectedValue === "all") {
+                    cards[i].style.display = "block"; // Show everything
+                } else if (cards[i].getAttribute("data-topic") === selectedValue) {
+                    cards[i].style.display = "block"; // Show matched filter
+                } else {
+                    cards[i].style.display = "none";  // Hide others
+                }
+            }
+        }
+    </script>
+</body>
+</html>
